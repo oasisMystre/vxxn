@@ -11,14 +11,14 @@ interface CreatorCardProps {
 
 const CreatorCard = ({ username, avatar, isVerified, postedAgo }: CreatorCardProps) => {
   return (
-    <div className="bg-zinc-900 rounded-xl overflow-hidden">
+    <div className="bg-zinc-900 mb-5 rounded-xl overflow-hidden">
       <Link to={"/user-profile"}>
-        <div className="aspect-[4/5] relative">
+        <div className="relative">
           <img
             src="https://images.unsplash.com/photo-1600096194534-95cf5ece04cf"
             alt="Preview"
-            className="w-full h-full object-cover"
-          />
+            className="w-full rounded-[20px] max-w-[311px] h-[216px] object-cover"
+            />
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
             <div className="flex items-center gap-2">
               <img
@@ -27,7 +27,7 @@ const CreatorCard = ({ username, avatar, isVerified, postedAgo }: CreatorCardPro
                 className="w-8 h-8 rounded-full object-cover"
               />
               <div className="flex items-center gap-1">
-                <span className="text-white font-medium">{username}</span>
+                <span className="text-white lg:text-[16px] text-[14px] font-medium">{username}</span>
                 {isVerified && (
                   <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                 )}

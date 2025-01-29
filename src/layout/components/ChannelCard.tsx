@@ -8,23 +8,27 @@ interface ChannelCardProps {
 
 const ChannelCard = ({ name, avatar, description }: ChannelCardProps) => {
   return (
-    <div className="bg-zinc-900 rounded-xl overflow-hidden">
+    <div className="bg-zinc-900 mb-5 rounded-xl overflow-hidden">
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
         <img
           src="https://images.unsplash.com/photo-1522337660859-02fbefca4702"
-          alt="Channel cover"
-          className="w-full aspect-[16/9] object-cover"
+          alt="Preview"
+          className="w-full rounded-[20px] max-w-[311px] h-[216px] object-cover"
         />
-        <img
-          src={avatar}
-          alt={name}
-          className="absolute left-4 bottom-0 transform translate-y-1/2 w-16 h-16 rounded-full border-4 border-zinc-900 object-cover"
-        />
-      </div>
-      <div className="p-6 pt-12">
-        <h3 className="text-xl font-bold text-white mb-2">{name}</h3>
-        <p className="text-gray-400">{description}</p>
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+          <div className="flex gap-2">
+            <img
+              src={avatar}
+              className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full object-cover"
+            />
+            <div className="flex items-center gap-1">
+              <div>
+                <h3 className="lg:text-xl text-[14px] font-bold text-white">{name}</h3>
+              </div>
+            </div>
+          </div>
+          <p className="text-white text-sm font-semibold mt-1">{description}</p>
+        </div>
       </div>
     </div>
   );

@@ -32,11 +32,8 @@ function Home() {
 
     // Skeleton Loaders
     const PostSkeleton = () => (
-        <div className="mb-6 bg-gray-800 rounded-xl p-6 animate-pulse">
-            <div className="h-80 bg-gray-700 rounded w-full mb-4" />
-            <div className="h-6 bg-gray-700 rounded w-1/2 mb-4" />
-            <div className="h-4 bg-gray-700 rounded w-full mb-2" />
-            <div className="h-4 bg-gray-700 rounded w-3/4" />
+        <div className="mb-6 rounded-[15px] w-2xl animate-pulse">
+            <div className="h-[456px] bg-gray-700 rounded mb-4 w-full" />
         </div>
     );
 
@@ -51,7 +48,7 @@ function Home() {
     return (
         <Layout>
             <div className="flex-1 p-6 min-h-screen">
-                <div className="max-w-2xl mx-auto">
+                <div className="max-w-[256px] mx-auto">
                     {isLoading
                         ? Array.from({ length: 3 }).map((_, i) => (
                             <PostSkeleton key={i} />
@@ -65,7 +62,7 @@ function Home() {
             </div>
 
             {/* Right Sidebar */}
-            <div className="fixed right-0 h-full overflow-y-auto no-scrollbar">
+            <div className="fixed lg:block hidden right-0 h-full overflow-y-auto no-scrollbar">
                 <TrendingSection />
             </div>
         </Layout>

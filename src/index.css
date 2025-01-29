@@ -12,7 +12,7 @@
 .vertical-video-player {
   position: relative;
   width: 100%;
-  max-width: 375px;
+  max-width: 256px;
   aspect-ratio: 9 / 16;
   border-radius: 10px;
   overflow: hidden;

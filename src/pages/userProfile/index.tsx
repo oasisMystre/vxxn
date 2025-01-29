@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Share2, Star, X, Volume2, ChevronUp, ChevronDown, VolumeX } from 'lucide-react';
 import { VideoPlayer } from '../../components';
+import Layout from '../../layout/layout';
 
 type ContentViewProps = {
     imageUrl: string;
@@ -60,17 +61,22 @@ function UserProfile() {
     const [activeTab, setActiveTab] = useState<'stories' | 'spotlight'>('stories');
     const [selectedContent, setSelectedContent] = useState<string | null>(null);
 
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const handleContentClick = (imageUrl: string) => {
         setSelectedContent(imageUrl);
     };
 
     return (
-        <>
-            <div className="min-h-screen bg-gray-900 text-white">
+        <Layout hideSidebar>
+            <div className="min-h-screen w-full bg-gray-900 text-white">
                 {/* Profile Header */}
                 <div className="relative">
                     {/* Cover Image */}
-                    <div className="h-32 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                    {/* bg-gradient-to-r from-purple-600 to-blue-600 */}
+                    <div className="h-20"></div>
 
                     {/* Profile Image */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-16">
@@ -182,7 +188,7 @@ function UserProfile() {
                     </div>
                 </div>
             </footer> */}
-        </>
+        </Layout>
     );
 }
 

@@ -17,7 +17,7 @@ const SponsoredCard = ({ title, description, image, sponsorName, sponsorLogo }: 
         <img
           src={image}
           alt={title}
-          className="w-full aspect-[4/5] object-cover"
+          className="w-full h-[216px] object-cover"
         />
         <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/60 rounded-full px-3 py-1">
           <Sparkles className="w-4 h-4 text-yellow-400" />
@@ -33,8 +33,8 @@ const SponsoredCard = ({ title, description, image, sponsorName, sponsorLogo }: 
           />
           <span className="text-gray-400 text-sm">{sponsorName}</span>
         </div>
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-400">{description}</p>
+        <h3 className="lg:text-xl text-[14px] font-bold text-white mb-2">{title}</h3>
+        <p className="text-gray-400 lg:text-[16px] text-[12px]">{description}</p>
       </div>
     </div>
   );

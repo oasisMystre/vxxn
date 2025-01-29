@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Layout from '../../layout/layout';
+import { VideoPlayer } from '../../components';
+import TrendingSection from '../../layout/components/TrendingSection';
 
 function Home() {
     const [posts, setPosts] = useState<number[]>([]);
@@ -55,83 +57,16 @@ function Home() {
                             <PostSkeleton key={i} />
                         ))
                         : posts.map((post) => (
-                            <div key={post} className="mb-6 bg-gray-800 rounded-xl p-6">
-                                <div className="h-80 rounded-lg bg-gray-700 overflow-hidden mb-3">
-                                    {/* add image */}
-                                    {/* <img
-                        src={'/assets/name-image'}
-                        alt="first image"
-                        className="object-cover object-center"
-                      /> */}
-                                </div>
-                                <h2 className="text-2xl font-bold mb-4">Post {post}</h2>
-                                <p className="text-gray-400">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua.
-                                </p>
+                            <div key={post} className="mb-6">
+                                <VideoPlayer />
                             </div>
                         ))}
                 </div>
             </div>
 
             {/* Right Sidebar */}
-            <div className="w-80 p-6 border-l border-gray-800 fixed right-0 h-full overflow-y-auto no-scrollbar">
-                <h2 className="text-xl font-bold mb-6">Recommended</h2>
-
-                {/* Sponsored Content */}
-                {isLoading ? (
-                    <SidebarSkeleton />
-                ) : (
-                    <div className="bg-gray-800 rounded-xl p-4 mb-6">
-                        <div className="h-52 rounded-lg bg-purple-900/30 overflow-hidden mb-3">
-                            {/* add image */}
-                            {/* <img
-                        src={'/assets/name-image'}
-                        alt="first image"
-                        className="object-cover object-center"
-                      /> */}
-                        </div>
-                        <div className="flex justify-between items-center mb-2">
-                            <h3 className="font-bold">Sponsored Content</h3>
-                            <span className="text-xs text-purple-400">Ad</span>
-                        </div>
-                        <p className="text-gray-400 text-sm">
-                            Discover amazing products that enhance your experience
-                        </p>
-                    </div>
-                )}
-
-                {/* Recommended Content */}
-                <div className="flex flex-col gap-4">
-                    {isLoading
-                        ? Array.from({ length: 3 }).map((_, i) => (
-                            <SidebarSkeleton key={i} />
-                        ))
-                        : [
-                            'Trending discussions',
-                            'New community highlights',
-                            'Popular stories',
-                        ].map((text, i) => (
-                            <div
-                                key={i}
-                                className="bg-gray-800 rounded-xl p-4 last:mb-14"
-                            >
-                                <div className="h-52 rounded-lg bg-gray-700 overflow-hidden mb-3">
-                                    {/* add image */}
-                                    {/* <img
-                        src={'/assets/name-image'}
-                        alt="first image"
-                        className="object-cover object-center"
-                      /> */}
-                                </div>
-                                <h3 className="font-bold mb-2">Recommended Post {i + 1}</h3>
-                                <p className="text-gray-400 text-sm">
-                                    {text} in your network
-                                </p>
-                            </div>
-                        ))}
-                </div>
+            <div className="w-[450px] fixed right-0 h-full overflow-y-auto no-scrollbar">
+                <TrendingSection />
             </div>
         </Layout>
     );

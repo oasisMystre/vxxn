@@ -50,7 +50,7 @@ function Home() {
 
     return (
         <Layout>
-            <div className="ml-64 mr-80 flex-1 p-6 min-h-screen">
+            <div className="flex-1 p-6 min-h-screen">
                 <div className="max-w-2xl mx-auto">
                     {isLoading
                         ? Array.from({ length: 3 }).map((_, i) => (
@@ -65,7 +65,7 @@ function Home() {
             </div>
 
             {/* Right Sidebar */}
-            <div className="w-[450px] fixed right-0 h-full overflow-y-auto no-scrollbar">
+            <div className="fixed right-0 h-full overflow-y-auto no-scrollbar">
                 <TrendingSection />
             </div>
         </Layout>

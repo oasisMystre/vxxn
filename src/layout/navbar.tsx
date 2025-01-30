@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
     return (
-        <div className="navbar bg-[#121212] pl-10">
+        <div className="navbar bg-[#2e2e2e] pl-10">
             <div className="w-full gap-2">
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered bg-[#1e1e1e] h-[40px] text-white w-24 md:w-auto" />

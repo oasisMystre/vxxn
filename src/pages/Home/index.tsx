@@ -59,7 +59,7 @@ function Home() {
 
             {/* Right Sidebar */}
             {/* h-full overflow-y-auto no-scrollbar */}
-            <div className="fixed lg:block hidden border-none right-5 h-full overflow-y-auto no-scrollbar">
+            <div className="fixed lg:block hidden border-none right-5">
                 <div className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
                     <Sidebar />
                 </div>

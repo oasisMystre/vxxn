@@ -28,12 +28,28 @@ const Sidebar = () => {
       sponsorLogo: 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28',
     }
   ];
+  const CardsSkeleton = () => (
+    <div className="h-full">
+      <div className="h-[216px] w-full bg-black mb-5  rounded-[20px]" />
+      <div className="h-[216px] w-full bg-black mb-5  rounded-[20px]" />
+      <div className="h-[216px] w-full bg-black mb-5  rounded-[20px]" />
+    </div>
+  );
+
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }), []
+
 
   return (
     <div className="px-4 pb-5">
       <h2 className="text-2xl pl-6 md:text-2xl font-[500px] text-white">Categories</h2>
       <div className="w-[300px] p-6 h-full">
-        {trending.map((item, index) => {
+        {isLoading ? <CardsSkeleton /> : trending.map((item, index) => {
           if (item.type === 'channel') {
             return (
               <ChannelCard

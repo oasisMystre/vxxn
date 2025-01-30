@@ -9,9 +9,9 @@ export const Navbar = () => {
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered bg-[#1e1e1e] h-[40px] text-white w-24 md:w-auto" />
                 </div>
-                <div className='flex justify-center w-[60%]'>
-                    <Link to={"/"}>
-                        <HomeIcon />
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Link to="/">
+                        <HomeIcon className="w-6 h-6 text-white" />
                     </Link>
                 </div>
                 {/* <div className="dropdown dropdown-end">

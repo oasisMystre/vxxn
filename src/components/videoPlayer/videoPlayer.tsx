@@ -59,7 +59,7 @@ function VideoPlayerModal() {
             {/* Main Content Grid */}
             <div className="container">
                 {/* Video Player Section */}
-                <div className=" rounded-[20px]">
+                <div className="rounded-[20px]">
                     <div className="relative bg-gray-900 h-[667px] w-[500px] rounded-[20px]">
                         <video
                             className="absolute top-0 left-0 w-full h-full rounded-[20px] object-cover"

@@ -4,10 +4,10 @@
 
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
-    display: none;
+    display: none !important;
+    scrollbar-color: transparent !important;
   }
 }
-
 
 .vertical-video-player {
   position: relative;

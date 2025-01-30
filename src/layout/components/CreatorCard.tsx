@@ -11,7 +11,7 @@ interface CreatorCardProps {
 
 const CreatorCard = ({ username, avatar, isVerified, postedAgo }: CreatorCardProps) => {
   return (
-    <div className="bg-zinc-900 mb-5 rounded-xl overflow-hidden">
+    <div className="mb-5 rounded-xl overflow-hidden">
       <Link to={"/user-profile"}>
         <div className="relative">
           <img

@@ -8,7 +8,7 @@ interface ChannelCardProps {
 
 const ChannelCard = ({ name, avatar, description }: ChannelCardProps) => {
   return (
-    <div className="bg-zinc-900 mb-5 rounded-xl overflow-hidden">
+    <div className="mb-5 rounded-xl overflow-hidden">
       <div className="relative">
         <img
           src="https://images.unsplash.com/photo-1522337660859-02fbefca4702"

@@ -48,16 +48,16 @@ function Home() {
     return (
         <Layout>
             <div className="flex-1 p-6 min-h-screen">
-                <div className="max-w-[256px] mx-auto">
-                    {isLoading
-                        ? Array.from({ length: 3 }).map((_, i) => (
-                            <PostSkeleton key={i} />
-                        ))
-                        : posts.map((post) => (
-                            <div key={post} className="mb-6">
-                                <VideoPlayer />
-                            </div>
-                        ))}
+                <div className="max-w-[500px] mx-auto">
+                {isLoading
+                    ? Array.from({ length: 3 }).map((_, i) => (
+                        <PostSkeleton key={i} />
+                    ))
+                    : posts.map((post) => (
+                        <div key={post} className="mb-6">
+                            <div className="w-full h-[667px] max-w-[500px] bg-black rounded-[20px]"></div>
+                        </div>
+                    ))}
                 </div>
             </div>
 

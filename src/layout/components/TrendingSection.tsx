@@ -32,7 +32,7 @@ const TrendingSection = () => {
   return (
     <div className="px-4 pb-5">
       <h2 className="text-2xl pl-6 md:text-2xl font-[500px] text-white">Categories</h2>
-      <div className="w-[350px] p-6 h-full">
+      <div className="w-[300px] p-6 h-full">
         {trending.map((item, index) => {
           if (item.type === 'channel') {
             return (

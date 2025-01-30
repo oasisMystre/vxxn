@@ -12,7 +12,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, hideSidebar }) => {
     return (
         <div className="min-h-screen bg-[#121212] text-gray-100">
-            <header className="fixed top-0 w-full z-[100] border-b border-gray-800">
+            <header className="fixed top-0 w-full z-[100] border-b border-[#b3b3b3]">
                 <Navbar />
             </header>
 

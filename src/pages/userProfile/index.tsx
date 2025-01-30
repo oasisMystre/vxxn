@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Share2, Star, X, Volume2, ChevronUp, ChevronDown, VolumeX } from 'lucide-react';
 import { VideoPlayer } from '../../components';
 import Layout from '../../layout/layout';
+import { ImageList, ImageListItem } from '@mui/material';
+import VideoPlayerModal from '../../components/videoPlayer/videoPlayer';
 
 type ContentViewProps = {
     imageUrl: string;
@@ -17,39 +19,17 @@ function ContentView({ imageUrl, onClose }: ContentViewProps) {
         };
     }, []);
     return (
-        <div className='fixed inset-0 backdrop-blur-2xl bg-black/30 z-50'>
+        <div className='fixed inset-0 backdrop-blur-2xl bg-black/30 z-[200]'>
             {/* Main Content Area */}
             <div className='w-full h-full relative'>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <VideoPlayer />
+                    <VideoPlayerModal />
                     {/* Close Button */}
                     <button
                         onClick={onClose}
                         className="absolute bg-gray-800 p-1 rounded-full top-0 left-[-100px] text-gray-300"
                     >
                         <X className="w-6 h-6" />
-                    </button>
-
-                    {/* up down buttons */}
-                    <div className='absolute right-[-100px] flex flex-col top-[50%] -translate-y-1/2'>
-                        <button
-                            className="bg-gray-800 p-1 mb-4 rounded-full text-gray-300"
-                        >
-                            <ChevronUp className="w-6 h-6" />
-                        </button>
-                        <button
-                            className="bg-gray-800 p-1 rounded-full text-gray-300"
-                        >
-                            <ChevronDown className="w-6 h-6" />
-                        </button>
-                    </div>
-
-                    {/* music button */}
-                    <button
-                        onClick={() => setIsVolumeOpen(!isVolumeOpen)}
-                        className="absolute p-1 rounded-full top-3 right-3 text-gray-300"
-                    >
-                        {isVolumeOpen ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
                     </button>
                 </div>
             </div>
@@ -69,9 +49,60 @@ function UserProfile() {
         setSelectedContent(imageUrl);
     };
 
+    const itemData = [
+        {
+            img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+            title: 'Breakfast',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+            title: 'Burger',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+            title: 'Camera',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+            title: 'Coffee',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+            title: 'Hats',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+            title: 'Honey',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+            title: 'Basketball',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+            title: 'Fern',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+            title: 'Mushrooms',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+            title: 'Tomato basil',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+            title: 'Sea star',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+            title: 'Bike',
+        },
+    ];
+
     return (
         <Layout hideSidebar>
-            <div className="min-h-screen w-full bg-gray-900 text-white">
+            <div className="min-h-screen w-full bg-[#121212] text-white">
                 {/* Profile Header */}
                 <div className="relative">
                     {/* Cover Image */}
@@ -153,7 +184,7 @@ function UserProfile() {
                         </div>
 
                         {/* Content Grid */}
-                        <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[60px] mt-20 pb-10">
+                        {/* <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[60px] mt-20 pb-10">
                             {[...Array(9)].map((_, i) => (
                                 <div
                                     key={i}
@@ -164,6 +195,22 @@ function UserProfile() {
                                     <VideoPlayer />
                                 </div>
                             ))}
+                        </div> */}
+                        <div className='flex justify-center w-full py-5'>
+                            <ImageList cols={3} rowHeight={164}>
+                                {itemData.map((item) => (
+                                    <ImageListItem key={item.img}>
+                                        <img
+                                            onClick={() => handleContentClick(`https://source.unsplash.com/random/800x800`)}
+                                            className='cursor-pointer'
+                                            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                                            alt={item.title}
+                                            loading="lazy"
+                                        />
+                                    </ImageListItem>
+                                ))}
+                            </ImageList>
                         </div>
                     </div>
                 </div>

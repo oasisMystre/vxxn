@@ -1,10 +1,10 @@
 import React from 'react';
 import { Star } from 'lucide-react';
-import CreatorCard from './CreatorCard';
-import ChannelCard from './ChannelCard';
-import SponsoredCard from './SponsoredCard';
+import CreatorCard from './components/CreatorCard';
+import ChannelCard from './components/ChannelCard';
+import SponsoredCard from './components/SponsoredCard';
 
-const TrendingSection = () => {
+const Sidebar = () => {
   const trending = [
     {
       type: 'channel',
@@ -71,4 +71,4 @@ const TrendingSection = () => {
   );
 };
 
-export default TrendingSection;
+export default Sidebar;

@@ -43,13 +43,13 @@ function Home() {
     return (
         <Layout>
             <div className="fixed lg:block hidden border-none left-3 top-3">
-                <div style={{ width: "300px" }} className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
+                <div style={{ width: "300px", height: "calc(100vh - 24px)" }} className="artboard phone-1 bg-black rounded-[20px] overflow-y-auto no-scrollbar">
                     <Sidebar />
                 </div>
             </div>
             <div className="flex-1 min-h-screen">
-                <div className="max-w-[630px] mx-auto">
-                    <div style={{ width: "630px" }} className="artboard phone-1 bg-black rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar">
+                <div className="w-full flex justify-center">
+                    <div style={{ width: "630px", height: "calc(100vh - 24px)" }} className="artboard phone-1 bg-black rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar">
                         {/* haeder */}
                         <div className='flex justify-center items-center gap-20 pt-5 fixed pb-3 top-3 rounded-[20px] z-10 bg-black w-[620px]'>
                             <Link to="#" onClick={() => setActive("search")}>
@@ -79,7 +79,7 @@ function Home() {
             {/* Right Sidebar */}
             {/* h-full overflow-y-auto no-scrollbar */}
             <div className="fixed lg:block hidden border-none right-3 top-3">
-                <div style={{ width: "300px" }} className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
+                <div style={{ width: "300px", height: "calc(100vh - 24px)" }} className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
                     <Sidebar isRightSide />
                 </div>
             </div>

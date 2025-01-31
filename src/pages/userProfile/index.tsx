@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Share2, Star, X, Volume2, ChevronUp, ChevronDown, VolumeX } from 'lucide-react';
+import { Share2, Star, X, Volume2, ChevronUp, ChevronDown, VolumeX, ChevronLeftCircleIcon } from 'lucide-react';
 import { VideoPlayer } from '../../components';
 import Layout from '../../layout/layout';
 import { ImageList, ImageListItem } from '@mui/material';
 import VideoPlayerModal from '../../components/videoPlayer/videoPlayer';
+import { Link } from 'react-router-dom';
 
 type ContentViewProps = {
     imageUrl: string;
@@ -23,7 +24,9 @@ function ContentView({ imageUrl, onClose }: ContentViewProps) {
             {/* Main Content Area */}
             <div className='w-full h-full relative'>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <VideoPlayerModal />
+                    <div className='w-[500px]'>
+                        <VideoPlayerModal />
+                    </div>
                     {/* Close Button */}
                     <button
                         onClick={onClose}
@@ -33,7 +36,7 @@ function ContentView({ imageUrl, onClose }: ContentViewProps) {
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
@@ -103,6 +106,11 @@ function UserProfile() {
     return (
         <Layout hideSidebar>
             <div className="min-h-screen w-full bg-[#121212] text-white">
+                <div className='fixed top-5 left-10 z-10'>
+                    <Link to={"/"}>
+                        <ChevronLeftCircleIcon className="w-6 h-6" />
+                    </Link>
+                </div>
                 {/* Profile Header */}
                 <div className="relative">
                     {/* Cover Image */}

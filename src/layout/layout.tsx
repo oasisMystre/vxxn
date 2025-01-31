@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideSidebar }) => {
                 <Navbar />
             </header> */}
 
-            <main className="pt-3 w-full flex no-scrollbar">
+            <main className="w-full flex no-scrollbar">
                 {children}
             </main>
         </div>

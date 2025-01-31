@@ -49,9 +49,9 @@ function Home() {
             </div>
             <div className="flex-1 min-h-screen">
                 <div className="w-full flex justify-center">
-                    <div style={{ width: "630px", height: "calc(100vh - 24px)" }} className="artboard phone-1 bg-black rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar">
+                    <div style={{ height: "calc(100vh - 24px)" }} className="bg-black rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full">
                         {/* haeder */}
-                        <div className='flex justify-center items-center gap-20 pt-5 fixed pb-3 top-3 rounded-[20px] z-10 bg-black w-[620px]'>
+                        <div className='flex justify-center items-center gap-20 pt-5 fixed pb-3 top-3 rounded-[20px] z-10 bg-black lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full'>
                             <Link to="#" onClick={() => setActive("search")}>
                                 <SearchIcon className={`w-6 h-6 cursor-pointer ${active == "search" && "text-white"} text-gray-500`} />
                             </Link>

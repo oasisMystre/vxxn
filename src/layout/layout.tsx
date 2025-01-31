@@ -12,11 +12,11 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, hideSidebar }) => {
     return (
         <div className="min-h-screen bg-[#2e2e2e] text-gray-100">
-            <header className="fixed top-0 w-full z-[100] border-b border-[#b3b3b3]">
+            {/* <header className="fixed top-0 w-full z-[100] border-b border-[#b3b3b3]">
                 <Navbar />
-            </header>
+            </header> */}
 
-            <main className="pt-[90px] w-full flex">
+            <main className="pt-3 w-full flex no-scrollbar">
                 {children}
             </main>
         </div>

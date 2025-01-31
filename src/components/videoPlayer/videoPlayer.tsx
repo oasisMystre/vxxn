@@ -55,25 +55,23 @@ function VideoPlayerModal() {
     };
 
     return (
-        <div className="text-white">
-            {/* Main Content Grid */}
-            <div className="container">
-                {/* Video Player Section */}
-                <div className="rounded-[20px]">
-                    <div className="relative bg-gray-900 h-[667px] w-full max-w-[500px] rounded-[20px]">
-                        <video
-                            className="absolute top-0 left-0 w-full h-full rounded-[20px] object-cover"
-                            poster="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1280&h=720&fit=crop"
-                            controls
-                        >
-                            <source src="your-video-source.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+        <div className="container w-full h-full">
+            {/* Video Player Section */}
+            <div className="rounded-[20px] flex justify-center items-center h-full">
+                <div className="relative bg-gray-900 h-[450px] w-full max-w-[500px] rounded-[20px]">
+                    <video
+                        className="absolute top-0 left-0 w-full h-full rounded-[20px] object-cover"
+                        poster="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1280&h=720&fit=crop"
+                        controls
+                    >
+                        <source src="your-video-source.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
 
-                    {/* Video Actions Bar */}
-                    {/* <div className="mt-4 flex items-center justify-between"> */}
-                    {/* <div className="flex items-center space-x-4">
+                {/* Video Actions Bar */}
+                {/* <div className="mt-4 flex items-center justify-between"> */}
+                {/* <div className="flex items-center space-x-4">
                             <button className="p-2 hover:bg-gray-800 rounded-full transition">
                                 <Heart className="w-6 h-6" />
                             </button>
@@ -84,7 +82,7 @@ function VideoPlayerModal() {
                                 <Share2 className="w-6 h-6" />
                             </button>
                         </div> */}
-                    {/* <div className="flex items-center space-x-4">
+                {/* <div className="flex items-center space-x-4">
                             <button className="p-2 hover:bg-gray-800 rounded-full transition">
                                 <BookmarkPlus className="w-6 h-6" />
                             </button>
@@ -92,8 +90,7 @@ function VideoPlayerModal() {
                                 <MoreHorizontal className="w-6 h-6" />
                             </button>
                         </div> */}
-                    {/* </div> */}
-                </div>
+                {/* </div> */}
             </div>
         </div>
     );

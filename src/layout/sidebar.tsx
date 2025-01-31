@@ -3,8 +3,12 @@ import { Star } from 'lucide-react';
 import CreatorCard from './components/CreatorCard';
 import ChannelCard from './components/ChannelCard';
 import SponsoredCard from './components/SponsoredCard';
+import VideoPlayerModal from '../components/videoPlayer/videoPlayer';
 
-const Sidebar = () => {
+interface Props {
+  isRightSide?: boolean;
+}
+const Sidebar = ({isRightSide}: Props) => {
   const trending = [
     {
       type: 'channel',
@@ -47,18 +51,24 @@ const Sidebar = () => {
 
   return (
     <div className="pb-5">
-      <h2 className="text-2xl pl-6 md:text-2xl font-[500px] text-center text-white fixed top-3 z-10 bg-black w-[300px] py-5 rounded-[20px]">Categories</h2>
+      <h2 className={`text-2xl pl-6 md:text-2xl font-[500px] text-center ${!isRightSide ? "text-white" : "text-black"} fixed top-3 z-10 bg-black w-[300px] py-5 rounded-[20px]`}>Categories</h2>
       <div className="w-full p-6 pt-20 h-full">
         {isLoading ? <CardsSkeleton /> : trending.map((item, index) => {
           if (item.type === 'channel') {
-            return (
-              <ChannelCard
-                key={index}
-                name={item.name}
-                avatar={item.avatar}
-                description={item.description}
-              />
-            );
+            if (!isRightSide) {
+              return (
+                <ChannelCard
+                  key={index}
+                  name={item.name}
+                  avatar={item.avatar}
+                  description={item.description}
+                />
+              );
+            } else {
+              return (
+              <VideoPlayerModal isRightSide={isRightSide} />
+              )
+            }
           } else if (item.type === 'creator') {
             return (
               <CreatorCard

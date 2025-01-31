@@ -107,7 +107,7 @@ function UserProfile() {
                 <div className="relative">
                     {/* Cover Image */}
                     {/* bg-gradient-to-r from-purple-600 to-blue-600 */}
-                    <div className="h-20"></div>
+                    <div className="h-20 bg-[#121212]"></div>
 
                     {/* Profile Image */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-16">

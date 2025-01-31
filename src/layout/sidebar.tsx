@@ -46,9 +46,9 @@ const Sidebar = () => {
 
 
   return (
-    <div className="px-4 pb-5">
-      <h2 className="text-2xl pl-6 md:text-2xl font-[500px] text-white">Categories</h2>
-      <div className="w-[300px] p-6 h-full">
+    <div className="pb-5">
+      <h2 className="text-2xl pl-6 md:text-2xl font-[500px] text-center text-white fixed top-3 z-10 bg-black w-[300px] py-5 rounded-[20px]">Categories</h2>
+      <div className="w-full p-6 pt-20 h-full">
         {isLoading ? <CardsSkeleton /> : trending.map((item, index) => {
           if (item.type === 'channel') {
             return (

@@ -105,9 +105,9 @@ function UploadPage() {
 
     return (
         <Layout>
-            <div style={{ width: "100%" }} className="artboard mx-2 my-3 phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
+            <div style={{ width: "100%", height: "calc(100vh - 24px)" }} className="artboard mx-2 my-3 phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
                 {/* haeder */}
-                <div className='flex justify-center items-center gap-20 pt-6 w-full pb-3 top-3 rounded-[20px] z-10 bg-black'>
+                <div className='flex justify-center items-center gap-20 pt-5 fixed pb-3 top-3 rounded-[20px] z-10 bg-black max-w-[calc(100vw-24px)] w-full'>
                     <Link to="#" onClick={() => setActive("search")}>
                         <SearchIcon className={`w-6 h-6 cursor-pointer ${active == "search" && "text-white"} text-gray-500`} />
                     </Link>
@@ -118,13 +118,13 @@ function UploadPage() {
                         <CameraIcon className={`w-6 h-6 cursor-pointer ${active == "camera" && "text-white"} text-gray-500`} />
                     </Link>
                 </div>
-                <div className="flex-1 p-6 min-h-screen mt-20">
+                <div className="flex-1 p-6 mt-20">
                     {/* Input Form */}
                     <form onSubmit={handleSubmit} className="mb-8">
                         <div className="flex justify-center gap-4">
                             <div className='w-full max-w-xl'>
                                 <input
-                                 type="url"
+                                    type="url"
                                     value={url}
                                     placeholder="Enter video URL (YouTube, Twitch, etc.)"
                                     onChange={(e) => setUrl(e.target.value)} className="input input-bordered w-full max-w-xl" />

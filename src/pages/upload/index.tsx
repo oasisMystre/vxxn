@@ -102,6 +102,9 @@ function UploadPage() {
         }
     };
     const [active, setActive] = React.useState("camera");
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <Layout>
@@ -120,14 +123,14 @@ function UploadPage() {
                 </div>
                 <div className="flex-1 p-6 mt-20">
                     {/* Input Form */}
-                    <form onSubmit={handleSubmit} className="mb-8">
-                        <div className="flex justify-center gap-4">
+                    <form className='flex justify-center items-center gap-20 pt-[35px] fixed pb-3 top-[60px] z-10 bg-black max-w-[calc(100vw-24px)] w-full'>
+                        <div className="flex justify-center gap-4 w-full">
                             <div className='w-full max-w-xl'>
                                 <input
                                     type="url"
                                     value={url}
                                     placeholder="Enter video URL (YouTube, Twitch, etc.)"
-                                    onChange={(e) => setUrl(e.target.value)} className="input input-bordered w-full max-w-xl" />
+                                    onChange={(e) => setUrl(e.target.value)} className="input text-black input-bordered w-full max-w-xl" />
                                 {/* <input
                                     placeholder="Enter video URL (YouTube, Twitch, etc.)"
                                     className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
@@ -161,96 +164,162 @@ function UploadPage() {
 
                     {/* Search Bar */}
                     {videos.length > 0 && (
-                        <div className="mb-6 relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Search className="h-5 w-5 text-gray-400" />
-                            </div>
-                            <input
-                                type="text"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="Search by title, uploader, or source..."
-                                className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                            />
-                        </div>
-                    )}
-
-                    {/* Video Table */}
-                    {filteredVideos.length > 0 && (
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
+                        <div className="overflow-x-auto mb-6 mt-14">
+                            <table className="table">
+                                {/* head */}
                                 <thead>
-                                    <tr className="border-b border-gray-700">
-                                        <th className="py-3 px-4">#</th>
-                                        <th className="py-3 px-4">Title</th>
-                                        <th className="py-3 px-4">Duration</th>
-                                        <th className="py-3 px-4">Quality</th>
-                                        <th className="py-3 px-4">Views</th>
-                                        <th className="py-3 px-4">Uploader</th>
-                                        <th className="py-3 px-4">Source</th>
-                                        <th className="py-3 px-4">Actions</th>
+                                    <tr>
+                                        <th>
+                                            <label>
+                                                <input type="checkbox" className="checkbox" />
+                                            </label>
+                                        </th>
+                                        <th className='text-white'>Name</th>
+                                        <th className='text-white'>Job</th>
+                                        <th className='text-white'>Favorite Color</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredVideos.map((video, index) => (
-                                        <tr key={video.id} className="border-b border-gray-800 hover:bg-gray-800/50">
-                                            <td className="py-4 px-4">{index + 1}</td>
-                                            <td className="py-4 px-4">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-24 h-16 rounded overflow-hidden">
+                                    {/* row 1 */}
+                                    <tr className='h-[100px]'>
+                                        <th>
+                                            <label>
+                                                <input type="checkbox" className="checkbox" />
+                                            </label>
+                                        </th>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle h-12 w-12">
                                                         <img
-                                                            src={video.thumbnail}
-                                                            alt={video.title}
-                                                            className="w-full h-full object-cover"
-                                                        />
+                                                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                                            alt="Avatar Tailwind CSS Component" />
                                                     </div>
-                                                    <span className="font-medium">{video.title}</span>
                                                 </div>
-                                            </td>
-                                            <td className="py-4 px-4">{video.duration}</td>
-                                            <td className="py-4 px-4">{video.quality}</td>
-                                            <td className="py-4 px-4">{video.views.toLocaleString()}</td>
-                                            <td className="py-4 px-4">{video.uploader}</td>
-                                            <td className="py-4 px-4">
-                                                <div className="flex items-center gap-2">
-                                                    {getSourceIcon(video.source)}
-                                                    <span className="capitalize">{video.source}</span>
+                                                <div>
+                                                    <div className="font-bold">Hart Hagerty</div>
+                                                    <div className="text-sm opacity-50">United States</div>
                                                 </div>
-                                            </td>
-                                            <td className="py-4 px-4">
-                                                <div className="flex items-center gap-2">
-                                                    {video.uploadStatus === 'pending' && (
-                                                        <button
-                                                            onClick={() => handleUpload(video.id)}
-                                                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center gap-2"
-                                                        >
-                                                            <Upload className="w-4 h-4" />
-                                                            Upload
-                                                        </button>
-                                                    )}
-                                                    {video.uploadStatus === 'uploading' && (
-                                                        <div className="flex items-center gap-2">
-                                                            <Loader2 className="w-5 h-5 animate-spin text-blue-400" />
-                                                            <span className="text-sm text-blue-400">{video.uploadProgress}%</span>
-                                                        </div>
-                                                    )}
-                                                    {video.uploadStatus === 'uploaded' && (
-                                                        <button
-                                                            onClick={() => handleRemove(video.id)}
-                                                            className="p-2 text-red-400 hover:text-red-300 transition-colors group relative"
-                                                            title="Remove from homepage"
-                                                        >
-                                                            <X className="w-5 h-5" />
-                                                            <span className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-xs rounded opacity-0 group-hover:opacity-100 whitespace-nowrap">
-                                                                Remove from homepage
-                                                            </span>
-                                                        </button>
-                                                    )}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Zemlak, Daniel and Leannon
+                                            <br />
+                                            <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                        </td>
+                                        <td>Purple</td>
+                                        <th>
+                                            <button className="btn btn-ghost btn-xs">details</button>
+                                        </th>
+                                    </tr>
+                                    {/* row 2 */}
+                                    <tr className='h-[100px]'>
+                                        <th>
+                                            <label>
+                                                <input type="checkbox" className="checkbox" />
+                                            </label>
+                                        </th>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle h-12 w-12">
+                                                        <img
+                                                            src="https://img.daisyui.com/images/profile/demo/3@94.webp"
+                                                            alt="Avatar Tailwind CSS Component" />
+                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                                <div>
+                                                    <div className="font-bold">Brice Swyre</div>
+                                                    <div className="text-sm opacity-50">China</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Carroll Group
+                                            <br />
+                                            <span className="badge badge-ghost badge-sm">Tax Accountant</span>
+                                        </td>
+                                        <td>Red</td>
+                                        <th>
+                                            <button className="btn btn-ghost btn-xs">details</button>
+                                        </th>
+                                    </tr>
+                                    {/* row 3 */}
+                                    <tr className='h-[100px]'>
+                                        <th>
+                                            <label>
+                                                <input type="checkbox" className="checkbox" />
+                                            </label>
+                                        </th>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle h-12 w-12">
+                                                        <img
+                                                            src="https://img.daisyui.com/images/profile/demo/4@94.webp"
+                                                            alt="Avatar Tailwind CSS Component" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">Marjy Ferencz</div>
+                                                    <div className="text-sm opacity-50">Russia</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Rowe-Schoen
+                                            <br />
+                                            <span className="badge badge-ghost badge-sm">Office Assistant I</span>
+                                        </td>
+                                        <td>Crimson</td>
+                                        <th>
+                                            <button className="btn btn-ghost btn-xs">details</button>
+                                        </th>
+                                    </tr>
+                                    {/* row 4 */}
+                                    <tr className='h-[100px]'>
+                                        <th>
+                                            <label>
+                                                <input type="checkbox" className="checkbox" />
+                                            </label>
+                                        </th>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle h-12 w-12">
+                                                        <img
+                                                            src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+                                                            alt="Avatar Tailwind CSS Component" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">Yancy Tear</div>
+                                                    <div className="text-sm opacity-50">Brazil</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Wyman-Ledner
+                                            <br />
+                                            <span className="badge badge-ghost badge-sm">Community Outreach Specialist</span>
+                                        </td>
+                                        <td>Indigo</td>
+                                        <th>
+                                            <button className="btn btn-ghost btn-xs">details</button>
+                                        </th>
+                                    </tr>
                                 </tbody>
+                                {/* foot */}
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Job</th>
+                                        <th>Favorite Color</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     )}

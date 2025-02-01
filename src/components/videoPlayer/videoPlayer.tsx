@@ -62,7 +62,7 @@ function VideoPlayerModal({isRightSide}: Props) {
         <div className={`w-full h-full ${!isRightSide && "p-5"}`}>
             {/* Video Player Section */}
             <div className="rounded-[20px] flex justify-center items-center h-full">
-                <div className={`relative ${isRightSide ? "w-full h-[216px]" : "max-h-[450px] h-full w-full max-w-[500px]"} rounded-[20px]`}>
+                <div className={`relative ${isRightSide ? "w-full h-[400px]" : "max-h-[450px] h-full w-full max-w-[450px]"} rounded-[20px]`}>
                     <video
                         className="absolute top-0 left-0 w-full h-full rounded-[20px] object-cover"
                         poster="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1280&h=720&fit=crop"

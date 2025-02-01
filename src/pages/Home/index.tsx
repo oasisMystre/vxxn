@@ -9,9 +9,15 @@ import { VideoModal } from '../../components/videoModal/videoModal';
 function Home() {
     const [posts, setPosts] = useState<number[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [active, setActive] = React.useState("home");
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchValue = searchParams.get("search") || "";
+    const mainRef = React.useRef<any>(null);
 
     // Load initial posts and setup scroll listener
     useEffect(() => {
+        setIsLoading(true);
         setTimeout(() => {
             setPosts(Array.from({ length: 5 }, (_, i) => i + 1));
             setIsLoading(false);
@@ -28,22 +34,39 @@ function Home() {
                 ]);
             }
         };
-
+        if (mainRef.current) {
+            mainRef.current.scrollTo(0, 0);
+        }
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [active]);
 
     // Skeleton Loaders
     const PostSkeleton = () => (
-        <div className="mb-6 rounded-[20px] w-2xl animate-pulse">
-            <div className="h-[667px] max-w-[500px] bg-black rounded mb-4 w-full" />
-        </div>
+        <div className="skeleton min-h-[450px] max-h-[450px] min-w-[450px] max-w-[450px]"></div>
+    );
+    const CardSkeleton = () => (
+        <>
+            <div className="skeleton min-h-[216px] max-h-[216px] min-w-[252px] max-w-[252px] mb-5"></div>
+            <div className="skeleton min-h-[400px] max-h-[400px] min-w-[252px] max-w-[252px] mb-5"></div>
+            <div className="skeleton min-h-[400px] max-h-[400px] min-w-[252px] max-w-[252px] mb-5"></div>
+            <div className="skeleton min-h-[472px] max-h-[472px] min-w-[252px] max-w-[252px] mb-5"></div>
+        </>
     );
 
-    const [active, setActive] = React.useState("home");
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const searchValue = searchParams.get("search") || "";
+    const CarouselSkeleton = () => (
+        <div className='flex items-center gap-10'>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+            <div className="skeleton min-h-[130px] max-h-[130px] min-w-[150px] max-w-[150px] mb-5"></div>
+        </div>
+
+    );
+
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e?.target);
@@ -51,9 +74,6 @@ function Home() {
         searchParams.set("search", searchValue as string);
         setSearchParams(searchParams)
     }
-    React.useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     return (
         <Layout>
@@ -65,7 +85,7 @@ function Home() {
             </div>
             <div className="flex-1 min-h-screen">
                 <div className="w-full flex justify-center">
-                    <div style={{ height: "calc(100vh - 24px)" }} className="bg-black rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full">
+                    <div ref={mainRef} style={{ height: "calc(100vh - 24px)" }} className="bg-black rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full">
                         {/* haeder */}
                         <div className='flex justify-center items-center gap-20 pt-5 fixed pb-3 top-3 rounded-[20px] z-10 bg-black lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full'>
                             <Link to="#" onClick={() => setActive("search")}>
@@ -86,22 +106,25 @@ function Home() {
                             </form>
                             {searchValue && <p className='mt-5 text-center font-semi text-[20px]'>Search Results for "{searchValue}"</p>}
                         </div>}
-
-                        {isLoading
-                            ? Array.from({ length: 3 }).map((_, i) => (
-                                <PostSkeleton key={i} />
-                            ))
+                        {isLoading && active == "home"
+                            ? <div className='mt-10'>
+                                {Array.from({ length: 3 }).map((_, i) => (
+                                    <div className='h-[calc(100vh-30px)] mb-6 flex justify-center items-center'>
+                                        <PostSkeleton key={i} />
+                                    </div>
+                                ))}
+                            </div>
                             : active == "home" ? posts.map((post) => (
                                 <div key={post} className="mb-6 mt-10 h-full overflow-y-auto">
                                     <VideoPlayerModal />
                                 </div>
                             )) :
-                                <div className={`w-full justify-center px-3 ${searchValue ? "mt-[220px]" : "mt-[180px]" }`}>
+                                <div className={`w-full justify-center px-3 ${searchValue ? "mt-[220px]" : "mt-[180px]"}`}>
                                     <div className='flex justify-between'>
                                         <p className='text-white text-md font-bold mb-10 md:pl-7 pl-3'>Trending This Week</p>
                                         <p className='text-white text-md font-bold mb-10 md:pl-7 pr-3 flex items-center '>See all <ChevronRight /></p>
                                     </div>
-                                    <div className="carousel carousel-center lg:max-w-[calc(100vw-680px)] max-w-[calc(100vw-44px)] gap-10">
+                                    {isLoading ? <div className='lg:max-w-[calc(100vw-670px)] overflow-auto no-scrollbar max-w-[calc(100vw-40px)]'><CarouselSkeleton /></div> : <div className="carousel carousel-center lg:max-w-[calc(100vw-670px)] max-w-[calc(100vw-40px)] gap-10">
                                         <div className="carousel-item max-h-[130px] max-w-[150px]">
                                             <img className='rounded-[20px]' src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Pizza" />
                                         </div>
@@ -135,7 +158,7 @@ function Home() {
                                                 src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
                                                 alt="Pizza" />
                                         </div>
-                                    </div>
+                                    </div>}
                                     <div className='w-full my-10'>
                                         <div className='flex justify-between'>
                                             <p className='text-white text-md font-bold mb-10 md:pl-7 pl-3'>Categories</p>
@@ -168,7 +191,7 @@ function Home() {
                                             <p className='text-white text-md font-bold mb-10 md:pl-7 pr-3 flex items-center '>See all <ChevronRight /></p>
                                         </div>
                                         <div>
-                                            <div className="carousel carousel-center lg:max-w-[calc(100vw-680px)] max-w-[calc(100vw-44px)] gap-10">
+                                            {isLoading ? <div className='lg:max-w-[calc(100vw-670px)] overflow-auto no-scrollbar max-w-[calc(100vw-40px)]'><CarouselSkeleton /></div> : <div className="carousel carousel-center lg:max-w-[calc(100vw-670px)] max-w-[calc(100vw-44px)] gap-10">
                                                 <div className="carousel-item max-h-[130px] max-w-[150px]">
                                                     <img className='rounded-[20px]' src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Pizza" />
                                                 </div>
@@ -202,11 +225,10 @@ function Home() {
                                                         src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
                                                         alt="Pizza" />
                                                 </div>
-                                            </div>
+                                            </div>}
                                         </div>
                                     </div>
-                                </div>
-                        }
+                                </div>}
                     </div>
                 </div>
             </div>
@@ -215,11 +237,14 @@ function Home() {
             {/* h-full overflow-y-auto no-scrollbar */}
             <div className="fixed lg:block hidden border-none right-3 top-3">
                 <div style={{ width: "300px", height: "calc(100vh - 24px)" }} className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
-                    <Sidebar isRightSide />
+                    {isLoading ? <div className='mt-10 flex justify-center w-full items-center flex-col'>
+                        <CardSkeleton />
+                    </div> :
+                        <Sidebar isRightSide />}
                 </div>
             </div>
             {isModalOpen && <VideoModal imageUrl="" onClose={() => setIsModalOpen(false)} />}
-        </Layout>
+        </Layout >
     );
 }
 

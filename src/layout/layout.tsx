@@ -1,8 +1,4 @@
-import { ReactNode } from 'react';
-import TrendingSection from './components/TrendingSection';
-import { Navbar } from './navbar';
-import { Fotter } from './footer';
-import { Carousel } from './components/carousel/carousel';
+import React, { ReactNode, useRef } from 'react';
 
 interface LayoutProps {
     children: ReactNode;
@@ -20,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideSidebar }) => {
                 {children}
             </main>
         </div>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;

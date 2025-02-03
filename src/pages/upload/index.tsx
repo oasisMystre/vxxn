@@ -3,6 +3,7 @@ import { Video, Youtube, Twitch, Plus, Loader2, Upload, X, Search, SearchIcon, H
 import Layout from '../../layout/layout';
 import { VideoItem } from '../../lib/types';
 import { Link } from 'react-router-dom';
+import { Header } from '../../layout/header';
 
 function UploadPage() {
     const [url, setUrl] = useState('');
@@ -50,7 +51,9 @@ function UploadPage() {
         }, 1000);
     };
 
-    const handleUpload = (videoId: string) => {
+    const handleUpload = (e) => {
+        e.preventDefault();
+        const videoId = "12";
         setVideos(prev => prev.map(video => {
             if (video.id === videoId) {
                 return { ...video, uploadStatus: 'uploading', uploadProgress: 0 };
@@ -91,17 +94,6 @@ function UploadPage() {
         }));
     };
 
-    const getSourceIcon = (source: string) => {
-        switch (source) {
-            case 'youtube':
-                return <Youtube className="w-5 h-5 text-red-500" />;
-            case 'twitch':
-                return <Twitch className="w-5 h-5 text-purple-500" />;
-            default:
-                return <Video className="w-5 h-5 text-blue-500" />;
-        }
-    };
-    const [active, setActive] = React.useState("camera");
     React.useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -110,31 +102,17 @@ function UploadPage() {
         <Layout>
             <div style={{ width: "100%", height: "calc(100vh - 24px)" }} className="artboard mx-2 my-3 phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar">
                 {/* haeder */}
-                <div className='flex justify-center items-center gap-20 pt-5 fixed pb-3 top-3 rounded-[20px] z-10 bg-black max-w-[calc(100vw-24px)] w-full'>
-                    <Link to="#" onClick={() => setActive("search")}>
-                        <SearchIcon className={`w-6 h-6 cursor-pointer ${active == "search" && "text-white"} text-gray-500`} />
-                    </Link>
-                    <Link to="/" onClick={() => setActive("home")}>
-                        <HomeIcon className={`w-6 h-6 cursor-pointer ${active == "home" && "text-white"} text-gray-500`} />
-                    </Link>
-                    <Link to="/upload" onClick={() => setActive("camera")}>
-                        <CameraIcon className={`w-6 h-6 cursor-pointer ${active == "camera" && "text-white"} text-gray-500`} />
-                    </Link>
-                </div>
+                <Header isUpload />
                 <div className="flex-1 p-6 mt-20">
                     {/* Input Form */}
-                    <form className='flex justify-center items-center gap-20 pt-[35px] fixed pb-3 top-[60px] z-10 bg-black max-w-[calc(100vw-24px)] w-full'>
+                    <form onSubmit={handleUpload} className='flex justify-center items-center gap-20 pt-[35px] fixed pb-3 top-[60px] z-10 bg-black w-full max-w-[calc(100vw-60px)]'>
                         <div className="flex justify-center gap-4 w-full">
                             <div className='w-full max-w-xl'>
                                 <input
                                     type="url"
                                     value={url}
                                     placeholder="Enter video URL (YouTube, Twitch, etc.)"
-                                    onChange={(e) => setUrl(e.target.value)} className="input text-black input-bordered w-full max-w-xl" />
-                                {/* <input
-                                    placeholder="Enter video URL (YouTube, Twitch, etc.)"
-                                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                                /> */}
+                                    onChange={(e) => setUrl(e.target.value)} className="input text-white input-bordered w-full max-w-xl" />
                             </div>
                             <button type="submit"
                                 // disabled={isLoading || !url} 
@@ -146,19 +124,6 @@ function UploadPage() {
                                 )}
                                 Add Video
                             </button>
-
-                            {/* <button
-                                type="submit"
-                                disabled={isLoading || !url}
-                                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                            >
-                                {isLoading ? (
-                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                ) : (
-                                    <Plus className="w-5 h-5" />
-                                )}
-                                Add Video
-                            </button> */}
                         </div>
                     </form>
 

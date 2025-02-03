@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, UploadPage, UserProfile } from "./pages";
+import { Home, UploadPage, UserProfile, Search } from "./pages";
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
         <Route element={<Home />} path="/" />
         <Route element={<UploadPage />} path="/upload" />
         <Route element={<UserProfile />} path="/user-profile" />
+        <Route element={<Search />} path="/search" />
       </Routes>
     </BrowserRouter>
   );

@@ -9,7 +9,7 @@ export default {
   plugins: [
     daisyui,
   ],
-  // daisyui: {
-  //   themes: ["halloween"],
-  // },
+  daisyui: {
+    themes: ["halloween"],
+  },
 };

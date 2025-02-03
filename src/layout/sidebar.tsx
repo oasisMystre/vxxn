@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Star } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import CreatorCard from './components/CreatorCard';
 import ChannelCard from './components/ChannelCard';
 import SponsoredCard from './components/SponsoredCard';
@@ -22,14 +22,6 @@ const Sidebar = ({ isRightSide }: Props) => {
       name: 'Simply Nails',
       avatar: 'https://images.unsplash.com/photo-1604654894610-df63bc536371',
       description: 'Nail obsessed? find the best tips, tricks, and hacks!',
-    },
-    {
-      type: 'sponsored',
-      title: 'Level Up Your Content Game',
-      description: 'Create stunning videos with our professional editing suite. Start your free trial today!',
-      image: 'https://images.unsplash.com/photo-1626544827763-d516dce335e2',
-      sponsorName: 'EditPro Studio',
-      sponsorLogo: 'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28',
     }
   ];
   const CardsSkeleton = () => (
@@ -68,7 +60,7 @@ const Sidebar = ({ isRightSide }: Props) => {
               return (
                 <>
                   <VideoPlayerModal isRightSide={isRightSide} />
-                  <div style={{ width: "250px", height: "400px" }} className="artboard phone-1 mb-5 bg-[#121212] rounded-[20px] relative">
+                  <div style={{ width: "250px", height: "400px" }} className="artboard phone-1 mt-2 bg-[#121212] rounded-[20px] relative">
                     <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/60 rounded-full px-3 py-1">
                       <Sparkles className="w-4 h-4 text-yellow-400" />
                       <span className="text-white text-sm font-medium">Sponsored</span>

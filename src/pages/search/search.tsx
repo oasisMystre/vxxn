@@ -6,6 +6,7 @@ import { ChevronRight } from 'lucide-react';
 import { VideoModal } from '../../components/videoModal/videoModal';
 import { CardSkeleton, CarouselSkeleton } from '../../components/skeleton/skeleton';
 import { Header } from '../../layout/header';
+import UserProfile from '../userProfile';
 
 // Constants
 const LOADING_TIMEOUT = 2000;
@@ -144,7 +145,7 @@ function Search() {
                 </div>
             </div>
 
-            {isModalOpen && <VideoModal imageUrl="" onClose={handleModalClose} />}
+            {isModalOpen && <UserProfile/>}
         </Layout>
     );
 }

@@ -104,8 +104,8 @@ function UserProfile() {
 
     return (
         <Layout hideSidebar>
-            <div className="min-h-screen w-full bg-[#121212] text-white">
-                <div className='fixed top-5 left-10 z-10'>
+            <div className="min-h-screen w-full bg-[#121212] text-white relative max-w-96">
+                <div className='absolute top-5 left-5 md:left-10 z-10'>
                     <Link to={"/"}>
                         <ChevronLeftCircleIcon className="w-6 h-6" />
                     </Link>

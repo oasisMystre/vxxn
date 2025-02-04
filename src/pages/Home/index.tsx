@@ -6,6 +6,7 @@ import { VideoModal } from '../../components/videoModal/videoModal';
 import { CardSkeleton, PostSkeleton } from '../../components/skeleton/skeleton';
 import { Header } from '../../layout/header';
 import SponsoredCard from '../../layout/components/SponsoredCard';
+import CreatorCard from '../../layout/components/CreatorCard';
 
 function Home() {
     const [posts, setPosts] = useState<number[]>([]);
@@ -66,25 +67,37 @@ function Home() {
                                         <VideoPlayerModal />
                                     </div>
                                     {
-
                                         (index + 1) % 4 === 0 &&(
                                             <div className='lg:hidden flex items-center justify-center w-full h-full px-5'>
                                                 <SponsoredCard
-                                                title="Arsenal"
-                                                description='Lorem ipsum dolor sit amet, 
-                                                            consectetur adipiscing elit. Sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua.
-                                                            Lorem ipsum dolor sit amet, 
-                                                            consectetur adipiscing elit. Sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua.'
-                                                image='https://picsum.photos/150'
-                                                sponsorLogo='https://picsum.photos/300'
-                                                sponsorName='Arsenal'/>
+                                                        title="Arsenal"
+                                                        description='Lorem ipsum dolor sit amet, 
+                                                                     consectetur adipiscing elit. Sed do eiusmod
+                                                                     tempor incididunt ut labore et dolore magna aliqua.
+                                                                     Lorem ipsum dolor sit amet, 
+                                                                     consectetur adipiscing elit. Sed do eiusmod
+                                                                    tempor incididunt ut labore et dolore magna aliqua.'
+                                                        image='https://picsum.photos/150'
+                                                        sponsorLogo='https://picsum.photos/300'
+                                                        sponsorName='Arsenal'/>
                                             </div>
                                         )
-
                                     }
-                                
+                                    
+                                    {
+                                        (index + 1) % 6 === 0 && (
+                                            <div className='lg:hidden flex items-center justify-center w-full h-full px-5'>
+                                                    <CreatorCard
+                                                        username={'cash.baker'}
+                                                        avatar={'https://images.unsplash.com/photo-1633332755192-727a05c4013d'}
+                                                        isVerified={true}
+                                                        postedAgo={'5h ago'}
+                                                      />
+
+                                            </div>
+                                        )
+                                    }
+                                                
                                 </>
                                
                             ))}

@@ -11,13 +11,13 @@ interface CreatorCardProps {
 
 const CreatorCard = ({ username, avatar, isVerified, postedAgo }: CreatorCardProps) => {
   return (
-    <div className="mb-5 rounded-xl overflow-hidden">
+    <div className="mb-5 rounded-xl overflow-hidden max-h-[450px] max-w-[450px] w-full h-full bg-blue-500">
       <Link to={"/user-profile"}>
         <div className="relative">
           <img
             src="https://images.unsplash.com/photo-1600096194534-95cf5ece04cf"
             alt="Preview"
-            className="w-full rounded-[20px] max-w-[311px] h-[216px] object-cover"
+            className="w-full h-[450px] lg:max-w-[311px] lg:h-[216px] object-cover"
             />
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
             <div className="flex items-center gap-2">
@@ -33,7 +33,7 @@ const CreatorCard = ({ username, avatar, isVerified, postedAgo }: CreatorCardPro
                 )}
               </div>
             </div>
-            <div className="text-gray-400 text-sm mt-1">{postedAgo}</div>
+            <div className="text-gray-400 text-sm mt-1 hidden lg:block">{postedAgo}</div>
           </div>
         </div>
       </Link>

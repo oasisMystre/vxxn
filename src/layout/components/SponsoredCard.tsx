@@ -11,7 +11,7 @@ interface SponsoredCardProps {
 
 const SponsoredCard = ({ title, description, image, sponsorName, sponsorLogo }: SponsoredCardProps) => {
   return (
-    <div className="rounded-xl overflow-hidden">
+    <div className="rounded-xl overflow-hidden max-h-[450px] max-w-[450px] w-full h-full">
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
         <img

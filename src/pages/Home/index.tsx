@@ -47,9 +47,9 @@ function Home() {
                     </div>}
                 </div>
             </div>
-            <div className="flex-1 min-h-screen ">
+            <div className="flex-1 min-h-screen">
                 <div className="w-full flex justify-center">
-                    <div ref={mainRef} style={{ height: "calc(100vh - 24px)" }} className="rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full">
+                    <div ref={mainRef} style={{ height: "calc(100vh - 24px)" }} className="rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full bg-black">
                         {/* haeder */}
                         <Header />
                         {isLoading

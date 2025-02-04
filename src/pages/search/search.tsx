@@ -35,16 +35,6 @@ const SectionHeader = ({ title }: { title: string }) => (
     </div>
 );
 
-const CategoryButtons = () => (
-    <div className='flex flex-col gap-3 justify-center items-center'>
-        {[1, 2, 3].map((_, index) => (
-            <button key={index} className="btn btn-xs sm:btn-sm">
-                Responsive
-            </button>
-        ))}
-    </div>
-);
-
 function Search() {
     const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -126,18 +116,6 @@ function Search() {
                                 </div> :
                                 renderCarousel()
                             }
-
-                            {/* Categories Section */}
-                            <div className='w-full my-10'>
-                                <SectionHeader title="Categories" />
-                                <div className='flex justify-center'>
-                                    <div className="bg-[#121212] p-5 rounded-[20px] h-full flex gap-10 justify-center items-between lg:max-w-[calc(100vw-700px)] max-w-[calc(100vw-34px)] w-full">
-                                        {[1, 2, 3].map((_, index) => (
-                                            <CategoryButtons key={index} />
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
 
                             {/* New Creators Section */}
                             <div className='w-full my-10'>

@@ -3,9 +3,9 @@ import Layout from '../../layout/layout';
 import Sidebar from '../../layout/sidebar';
 import { useSearchParams } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { VideoModal } from '../../components/videoModal/videoModal';
 import { CardSkeleton, CarouselSkeleton } from '../../components/skeleton/skeleton';
 import { Header } from '../../layout/header';
+import UserProfile from '../userProfile';
 
 // Constants
 const LOADING_TIMEOUT = 2000;
@@ -37,7 +37,7 @@ const SectionHeader = ({ title }: { title: string }) => (
 
 function Search() {
     const [isLoading, setIsLoading] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const searchValue = searchParams.get("search") || "";
     const mainRef = React.useRef<HTMLDivElement>(null);
@@ -62,14 +62,13 @@ function Search() {
         setTimeout(() => setIsSearching(false), LOADING_TIMEOUT);
     }, [setSearchParams]);
 
-    const handleModalOpen = useCallback(() => setIsModalOpen(true), []);
-    const handleModalClose = useCallback(() => setIsModalOpen(false), []);
+    const handleOpenUserProfile = useCallback(()=>setIsProfileOpen(true), [])
+    const handleCloseUserProfile = useCallback(()=>setIsProfileOpen(false), [])
 
     const renderCarousel = () => (
         <div className="carousel carousel-center lg:max-w-[calc(100vw-670px)] max-w-[calc(100vw-40px)] gap-10">
-            <CarouselItem src={CAROUSEL_IMAGES[0]} />
-            {CAROUSEL_IMAGES.slice(1).map((src, index) => (
-                <CarouselItem key={index} src={src} onClick={handleModalOpen} />
+            {CAROUSEL_IMAGES.map((src, index) => (
+                <CarouselItem key={index} src={src} onClick={handleOpenUserProfile} />
             ))}
         </div>
     );
@@ -144,7 +143,10 @@ function Search() {
                 </div>
             </div>
 
-            {isModalOpen && <VideoModal imageUrl="" onClose={handleModalClose} />}
+            <div className={`fixed top-0 right-0 h-full w-full sm:max-w-[312px] shadow-lg transition-transform duration-300 rounded-[26px] ${
+                isProfileOpen ? "translate-x-0" : "translate-x-full"}`}>
+                <UserProfile handleClose={handleCloseUserProfile}/>
+            </div>
         </Layout>
     );
 }

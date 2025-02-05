@@ -66,73 +66,78 @@ function Home() {
           >
             {/* haeder */}
             <Header />
-            {isLoading ? (
-              <div className="mt-10">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div className="h-[calc(100vh-30px)] mb-6 flex justify-center items-center">
-                    <PostSkeleton key={i} />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              posts.map((post, index) => (
-                <>
-                  <div key={post} className="mb-6 mt-10 h-full overflow-y-auto">
-                    <VideoPlayerModal />
-                  </div>
-                  {(index + 1) % 4 === 0 && (
-                    <div className="lg:hidden flex items-center justify-center w-full h-full px-5">
-                      <SponsoredCard
-                        title="Arsenal"
-                        description="Lorem ipsum dolor sit amet, 
+            <div className="snap-y snap-mandatory">
+              {isLoading ? (
+                <div className="mt-10">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div className=" mb-6 flex justify-center items-center">
+                      <PostSkeleton key={i} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                posts.map((post, index) => (
+                  <>
+                    <div
+                      key={post}
+                      className="h-[calc(100vh-30px)] mb-6 mt-10 overflow-y-auto snap-center"
+                    >
+                      <VideoPlayerModal isRightSide={false} />
+                    </div>
+                    {(index + 1) % 4 === 0 && (
+                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-center">
+                        <SponsoredCard
+                          title="Arsenal"
+                          description="Lorem ipsum dolor sit amet, 
                           consectetur adipiscing elit. Sed do eiusmod
                           tempor incididunt ut labore et dolore magna aliqua.
                           Lorem ipsum dolor sit amet, 
                           consectetur adipiscing elit. Sed do eiusmod
                            tempor incididunt ut labore et dolore magna aliqua."
-                        image="https://picsum.photos/150"
-                        sponsorLogo="https://picsum.photos/300"
-                        sponsorName="Arsenal"
-                      />
-                    </div>
-                  )}
+                          image="https://picsum.photos/150"
+                          sponsorLogo="https://picsum.photos/300"
+                          sponsorName="Arsenal"
+                        />
+                      </div>
+                    )}
 
-                  {(index + 1) % 6 === 0 && (
-                    <div className="lg:hidden flex items-center justify-center w-full h-full px-5">
-                      <CreatorCard
-                        username={"cash.baker"}
-                        avatar={
-                          "https://images.unsplash.com/photo-1633332755192-727a05c4013d"
-                        }
-                        isVerified={true}
-                        postedAgo={"5h ago"}
-                      />
-                    </div>
-                  )}
-                </>
-              ))
+                    {(index + 1) % 6 === 0 && (
+                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-center">
+                        <CreatorCard
+                          username={"cash.baker"}
+                          avatar={
+                            "https://images.unsplash.com/photo-1633332755192-727a05c4013d"
+                          }
+                          isVerified={true}
+                          postedAgo={"5h ago"}
+                        />
+                      </div>
+                    )}
+                  </>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="fixed lg:block hidden border-none right-3 top-3">
+          <div
+            style={{ width: "300px", height: "calc(100vh - 24px)" }}
+            className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar"
+          >
+            {isLoading ? (
+              <div className="mt-10 flex justify-center w-full items-center flex-col">
+                <CardSkeleton />
+              </div>
+            ) : (
+              <Sidebar isRightSide />
             )}
           </div>
         </div>
+        {isModalOpen && (
+          <VideoModal imageUrl="" onClose={() => setIsModalOpen(false)} />
+        )}
       </div>
-
-      <div className="fixed lg:block hidden border-none right-3 top-3">
-        <div
-          style={{ width: "300px", height: "calc(100vh - 24px)" }}
-          className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar"
-        >
-          {isLoading ? (
-            <div className="mt-10 flex justify-center w-full items-center flex-col">
-              <CardSkeleton />
-            </div>
-          ) : (
-            <Sidebar isRightSide />
-          )}
-        </div>
-      </div>
-      {isModalOpen && (
-        <VideoModal imageUrl="" onClose={() => setIsModalOpen(false)} />
-      )}
     </Layout>
   );
 }

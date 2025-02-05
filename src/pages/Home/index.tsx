@@ -59,16 +59,16 @@ function Home() {
       </div>
       <div className="flex-1 min-h-screen">
         <div className="w-full flex justify-center">
+          <Header />
           <div
             ref={mainRef}
             style={{ height: "calc(100vh - 24px)" }}
-            className="rounded-[20px] fixed top-3 h-full overflow-y-auto no-scrollbar lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full bg-black"
+            className="rounded-[20px] fixed top-3 h-full  lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full bg-black"
           >
             {/* haeder */}
-            <Header />
-            <div className="snap-y snap-mandatory">
+            <div className="h-full w-full snap-y snap-mandatory overflow-y-auto no-scrollbar">
               {isLoading ? (
-                <div className="mt-10">
+                <div className="mt-10 snap-start">
                   {Array.from({ length: 3 }).map((_, i) => (
                     <div className=" mb-6 flex justify-center items-center">
                       <PostSkeleton key={i} />
@@ -77,15 +77,15 @@ function Home() {
                 </div>
               ) : (
                 posts.map((post, index) => (
-                  <>
+                  <div className="snap-start" key={post}>
                     <div
-                      key={post}
-                      className="h-[calc(100vh-30px)] mb-6 mt-10 overflow-y-auto snap-center"
+                      // key={post}
+                      className="h-[calc(100vh-30px)] mb-6 mt-10 overflow-y-auto snap-start"
                     >
                       <VideoPlayerModal isRightSide={false} />
                     </div>
                     {(index + 1) % 4 === 0 && (
-                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-center">
+                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-start">
                         <SponsoredCard
                           title="Arsenal"
                           description="Lorem ipsum dolor sit amet, 
@@ -102,7 +102,7 @@ function Home() {
                     )}
 
                     {(index + 1) % 6 === 0 && (
-                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-center">
+                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-start">
                         <CreatorCard
                           username={"cash.baker"}
                           avatar={
@@ -113,7 +113,7 @@ function Home() {
                         />
                       </div>
                     )}
-                  </>
+                  </div>
                 ))
               )}
             </div>

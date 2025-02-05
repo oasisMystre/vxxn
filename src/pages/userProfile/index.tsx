@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { Share2, Star, X, Volume2, ChevronUp, ChevronDown, VolumeX, ChevronLeftCircleIcon } from 'lucide-react';
-import { VideoPlayer } from '../../components';
+import { Share2, Star, X, ChevronRightCircleIcon } from 'lucide-react';
 import Layout from '../../layout/layout';
 import { ImageList, ImageListItem } from '@mui/material';
 import VideoPlayerModal from '../../components/videoPlayer/videoPlayer';
-import { Link } from 'react-router-dom';
+
 
 type ContentViewProps = {
     imageUrl: string;
     onClose: () => void;
 };
+type UserProfileProps = {
+    handleClose: ()=>void
+}
 
 function ContentView({ imageUrl, onClose }: ContentViewProps) {
     const [isVolumeOpen, setIsVolumeOpen] = React.useState(true);
@@ -39,7 +41,7 @@ function ContentView({ imageUrl, onClose }: ContentViewProps) {
     );
 }
 
-function UserProfile() {
+function UserProfile({handleClose}:UserProfileProps) {
     const [activeTab, setActiveTab] = useState<'stories' | 'spotlight'>('stories');
     const [selectedContent, setSelectedContent] = useState<string | null>(null);
 
@@ -104,11 +106,11 @@ function UserProfile() {
 
     return (
         <Layout hideSidebar>
-            <div className="min-h-screen w-full bg-[#121212] text-white">
-                <div className='fixed top-5 left-10 z-10'>
-                    <Link to={"/"}>
-                        <ChevronLeftCircleIcon className="w-6 h-6" />
-                    </Link>
+            <div className="h-max rounded-[26px] w-full bg-[#121212] text-white flex flex-col p-6 mt-3">
+                <div className=''>
+                    <button onClick={handleClose}>
+                        <ChevronRightCircleIcon className="w-6 h-6" />
+                    </button>
                 </div>
                 {/* Profile Header */}
                 <div className="relative">

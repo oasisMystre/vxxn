@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
 import CreatorCard from './components/CreatorCard';
 import ChannelCard from './components/ChannelCard';
 import SponsoredCard from './components/SponsoredCard';
@@ -38,7 +37,7 @@ const Sidebar = ({ isRightSide }: Props) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-  }), []
+  },[])
 
 
   return (
@@ -51,9 +50,9 @@ const Sidebar = ({ isRightSide }: Props) => {
               return (
                 <ChannelCard
                   key={index}
-                  name={item.name}
+                  name={item.name || ''}
                   avatar={item.avatar}
-                  description={item.description}
+                  description={item.description || ''}
                 />
               );
             } else {
@@ -61,10 +60,17 @@ const Sidebar = ({ isRightSide }: Props) => {
                 <>
                   <VideoPlayerModal isRightSide={isRightSide} />
                   <div style={{ width: "250px", height: "400px" }} className="artboard phone-1 mt-2 bg-[#121212] rounded-[20px] relative">
-                    <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/60 rounded-full px-3 py-1">
-                      <Sparkles className="w-4 h-4 text-yellow-400" />
-                      <span className="text-white text-sm font-medium">Sponsored</span>
-                    </div>
+                  <SponsoredCard
+                      title="Arsenal"
+                      description='Lorem ipsum dolor sit amet, 
+                                   consectetur adipiscing elit. Sed do eiusmod
+                                   tempor incididunt ut labore et dolore magna aliqua.
+                                   Lorem ipsum dolor sit amet, 
+                                   consectetur adipiscing elit. Sed do eiusmod
+                                   tempor incididunt ut labore et dolore magna aliqua.'
+                      image='https://picsum.photos/150'
+                      sponsorLogo='https://picsum.photos/300'
+                      sponsorName='Arsenal'/>
                   </div>
                 </>
               )
@@ -73,22 +79,25 @@ const Sidebar = ({ isRightSide }: Props) => {
             return (
               <CreatorCard
                 key={index}
-                username={item.username}
+                username={item.username || ''}
                 avatar={item.avatar}
-                isVerified={item.isVerified}
-                postedAgo={item.postedAgo}
+                isVerified={item.isVerified || false}
+                postedAgo={item.postedAgo || ''}
               />
             );
           } else {
             return (
               <SponsoredCard
-                key={index}
-                title={item.title}
-                description={item.description}
-                image={item.image}
-                sponsorName={item.sponsorName}
-                sponsorLogo={item.sponsorLogo}
-              />
+                  title="Arsenal"
+                  description='Lorem ipsum dolor sit amet, 
+                               consectetur adipiscing elit. Sed do eiusmod
+                               tempor incididunt ut labore et dolore magna aliqua.
+                               Lorem ipsum dolor sit amet, 
+                               consectetur adipiscing elit. Sed do eiusmod
+                               tempor incididunt ut labore et dolore magna aliqua.'
+                  image='https://picsum.photos/150'
+                  sponsorLogo='https://picsum.photos/300'
+                  sponsorName='Arsenal'/>
             );
           }
         }) : <></>}

@@ -66,6 +66,7 @@ function Home() {
             className="rounded-[20px] fixed top-3 h-full lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full bg-black"
           >
             {/* haeder */}
+            {/* the snap propery on works if the height is set, don't remove it */}
             <div className="h-full w-full snap-y snap-mandatory scroll-smooth overflow-y-auto no-scrollbar">
               {isLoading ? (
                 <div className="mt-10 snap-start">
@@ -78,6 +79,7 @@ function Home() {
               ) : (
                 posts.map((post, index) => (
                   <>
+                    {/* the className in this component is mandatory for scroll-snap */}
                     <div
                       key={post}
                       className="h-[calc(100vh-30px)] mb-6 mt-10 overflow-y-auto snap-start"

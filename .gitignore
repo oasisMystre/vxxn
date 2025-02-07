@@ -2,4 +2,4 @@ node_modules
 dist
 
 .gitignore
-.vscode
+./vscode

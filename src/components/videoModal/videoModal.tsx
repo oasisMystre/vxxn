@@ -15,7 +15,7 @@ export function VideoModal({ imageUrl, onClose }: ContentViewProps) {
         };
     }, []);
     return (
-        <div className='fixed inset-0 backdrop-blur-2xl bg-black/30 z-[200]'>
+        <div className='fixed inset-0 backdrop-blur-2xl  z-[200] bg-green-500'>
             {/* Main Content Area */}
             <div className='w-full h-full relative'>
                 <div className='absolute h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>

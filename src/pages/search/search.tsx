@@ -106,8 +106,8 @@ function Search() {
                         </div>
 
                         {/* Content Sections */}
-                        <div className={`w-full justify-center px-3 ${searchValue ? "mt-[220px]" : "mt-[190px]"}`}>
-                            {/* Trending Section */}
+                        {/* <div className={`w-full justify-center px-3 ${searchValue ? "mt-[220px]" : "mt-[190px]"}`}>
+                             Trending Section - change this to comment 
                             <SectionHeader title="Trending This Week" />
                             {(isLoading || isSearching) ?
                                 <div className='lg:max-w-[calc(100vw-670px)] overflow-auto no-scrollbar max-w-[calc(100vw-40px)]'>
@@ -116,7 +116,7 @@ function Search() {
                                 renderCarousel()
                             }
 
-                            {/* New Creators Section */}
+                            New Creators Section - change this to comment
                             <div className='w-full my-10'>
                                 <SectionHeader title="New Creators" />
                                 {(isLoading || isSearching) ?
@@ -126,7 +126,7 @@ function Search() {
                                     renderCarousel()
                                 }
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -67,7 +67,7 @@ function Home() {
           >
             {/* haeder */}
             {/* the snap propery on works if the height is set, don't remove it */}
-            <div className="h-full w-full snap-y snap-mandatory scroll-smooth overflow-y-auto no-scrollbar">
+            <div className="max-h-[91vh] mt-10 w-full snap-y snap-mandatory scroll-smooth overflow-y-auto no-scrollbar">
               {isLoading ? (
                 <div className="mt-10 snap-start">
                   {Array.from({ length: 3 }).map((_, i) => (
@@ -82,7 +82,7 @@ function Home() {
                     {/* the className in this component is mandatory for scroll-snap */}
                     <div
                       key={post}
-                      className="h-[calc(100vh-30px)] mb-6 mt-10 overflow-y-auto snap-start"
+                      className="max-h-[90vh] snap-start"
                     >
                       <VideoPlayerModal isRightSide={false} />
                     </div>
@@ -103,7 +103,7 @@ function Home() {
                       </div>
                     )}
 
-                    {(index + 1) % 6 === 0 && (
+                    {/* {(index + 1) % 6 === 0 && (
                       <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-start">
                         <CreatorCard
                           username={"cash.baker"}
@@ -114,7 +114,7 @@ function Home() {
                           postedAgo={"5h ago"}
                         />
                       </div>
-                    )}
+                    )} */}
                   </>
                 ))
               )}

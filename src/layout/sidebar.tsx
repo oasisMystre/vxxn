@@ -77,13 +77,15 @@ const Sidebar = ({ isRightSide }: Props) => {
             }
           } else if (item.type === 'creator') {
             return (
-              <CreatorCard
-                key={index}
-                username={item.username || ''}
-                avatar={item.avatar}
-                isVerified={item.isVerified || false}
-                postedAgo={item.postedAgo || ''}
-              />
+              <>
+              </>
+              // <CreatorCard
+              //   key={index}
+              //   username={item.username || ''}
+              //   avatar={item.avatar}
+              //   isVerified={item.isVerified || false}
+              //   postedAgo={item.postedAgo || ''}
+              // />
             );
           } else {
             return (

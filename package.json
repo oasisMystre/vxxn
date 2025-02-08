@@ -27,6 +27,7 @@
     "react-transition-group": "^4.4.5",
     "react-virtualized-auto-sizer": "^1.0.25",
     "react-window": "^1.8.11",
+    "react-window-infinite-loader": "^1.0.10",
     "unocss": "^65.4.3",
     "vite-react-typescript-starter": "file:",
     "xior": "^0.6.3"
@@ -36,6 +37,7 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@types/react-window": "^1.8.8",
+    "@types/react-window-infinite-loader": "^1.0.9",
     "@vitejs/plugin-react": "^4.3.1",
     "daisyui": "^4.12.23",
     "eslint": "^9.9.1",

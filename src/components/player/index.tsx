@@ -57,7 +57,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
           <video
             ref={video}
             src={src}
-            className="absolute inset-0 w-full h-full object-fill rounded-xl"
+            className="absolute inset-0 w-full h-full object-cover rounded-xl"
             loop
             playsInline
             disablePictureInPicture
@@ -72,7 +72,9 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
             {children}
             <MuteButton className="z-100" />
             <PlaybackToggleButton className="z-10" />
-            <ProgressBar className="z-100 absolute bottom-0 inset-x-2 transition-all transition-100" />
+            {inView && (
+              <ProgressBar className="z-100 absolute -bottom-3.5 inset-x-2 transition-all transition-100" />
+            )}
           </div>
         </div>
       </PlayerProvider>

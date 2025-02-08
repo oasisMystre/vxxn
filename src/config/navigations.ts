@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import { Camera, Home, Search, type LucideIcon } from "lucide-react";
 
 export type Navigation = {
   icon: LucideIcon;
@@ -6,5 +6,17 @@ export type Navigation = {
   hiddenOnMobile?: boolean;
 };
 
-
-export const homeNavigations = {}
+export const homeNavigations: Navigation[] = [
+  {
+    icon: Home,
+    link: "/",
+  },
+  {
+    icon: Search,
+    link: "#",
+  },
+  {
+    icon: Camera,
+    link: "#",
+  },
+];

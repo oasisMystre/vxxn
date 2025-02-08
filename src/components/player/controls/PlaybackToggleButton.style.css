@@ -10,6 +10,5 @@
 }
 
 .animate-pulse {
-  display: flex;
   animation: pulse 1s;
 }

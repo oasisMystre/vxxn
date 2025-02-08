@@ -38,7 +38,7 @@ export default function ToggleButton({ className }: ToggleButtonProps) {
         if (timer) window.clearTimeout(timer);
         const timeout = window.setTimeout(() => {
           setIsAnimated(false);
-        }, 500);
+        }, 900);
 
         setTimer(timeout);
       }}
@@ -46,11 +46,11 @@ export default function ToggleButton({ className }: ToggleButtonProps) {
       <button
         className={clsx(
           className,
-          isAnimated ? "animate-pulse" : "!hidden",
-          "m-auto size-12 items-center justify-center bg-black text-white rounded-full hidden"
+          isAnimated ? "flex animate-pulse" : "hidden",
+          "m-auto size-12 items-center justify-center bg-black text-white rounded-full"
         )}
       >
-        {playing ? <FaPause /> : <FaPlay />}
+        {playing ? <FaPlay /> : <FaPause/>}
       </button>
     </main>
   );

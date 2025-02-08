@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./PlaybackToggleButton.style.css";
 import { usePlayer } from "../../../providers/PlayerProvider";
@@ -12,6 +12,7 @@ type ToggleButtonProps = {
 export default function ToggleButton({ className }: ToggleButtonProps) {
   const { playing, setPlaying, video } = usePlayer();
   const [isAnimated, setIsAnimated] = useState(false);
+  const [timer, setTimer] = useState<number | null>(null);
 
   const handlePlay = () => setPlaying(true);
   const handlePause = () => setPlaying(false);
@@ -30,10 +31,16 @@ export default function ToggleButton({ className }: ToggleButtonProps) {
 
   return (
     <main
-      className="absolute inset-0"
+      className="absolute inset-0 flex"
       onClick={() => {
-        playing ? video?.play() : video?.pause();
+        playing ? video?.pause() : video?.play();
         setIsAnimated(true);
+        if (timer) window.clearTimeout(timer);
+        const timeout = window.setTimeout(() => {
+          setIsAnimated(false);
+        }, 500);
+
+        setTimer(timeout);
       }}
     >
       <button
@@ -42,7 +49,6 @@ export default function ToggleButton({ className }: ToggleButtonProps) {
           isAnimated ? "animate-pulse" : "!hidden",
           "m-auto size-12 items-center justify-center bg-black text-white rounded-full hidden"
         )}
-        onAnimationEnd={() => setIsAnimated(false)}
       >
         {playing ? <FaPause /> : <FaPlay />}
       </button>

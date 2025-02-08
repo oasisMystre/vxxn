@@ -1,147 +1,38 @@
-import React, { useState, useEffect } from "react";
-import Layout from "../../layout/layout";
-import Sidebar from "../../layout/sidebar";
-import VideoPlayerModal from "../../components/videoPlayer/videoPlayer";
-import { VideoModal } from "../../components/videoModal/videoModal";
-import { CardSkeleton, PostSkeleton } from "../../components/skeleton/skeleton";
-import { Header } from "../../layout/header";
-import SponsoredCard from "../../layout/components/SponsoredCard";
-import CreatorCard from "../../layout/components/CreatorCard";
+import { useState } from "react";
 
-function Home() {
-  const [posts, setPosts] = useState<number[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const mainRef = React.useRef<any>(null);
+import FeedList from "../../components/feed/FeedList";
+import BannerAds from "../../components/ads/BannerAds";
+import Navigation from "../../components/layout/Navigation";
+import InterstitialAds from "../../components/ads/InterstitialAds";
 
-  // Load initial posts and setup scroll listener
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight - 100
-    ) {
-      setPosts((prev) => [
-        ...prev,
-        ...Array.from({ length: 3 }, (_, i) => prev.length + i + 1),
-      ]);
-    }
+import { bannerAds } from "../../config/mock/adsource";
+import { homeFeeds } from "../../config/mock/videosource";
+
+export function HomePage() {
+  const [feeds, setFeeds] = useState(homeFeeds);
+  const onLoadMore = () => {
+    setFeeds((feeds) => feeds.concat(homeFeeds));
   };
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setPosts(Array.from({ length: 12 }, (_, i) => i + 1));
-      setIsLoading(false);
-    }, 2000);
-
-    if (mainRef.current) {
-      mainRef.current.scrollTo(0, 0);
-    }
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <Layout>
-      <div className="fixed lg:block hidden border-none left-3 top-3 ">
-        <div
-          style={{ width: "300px", height: "calc(100vh - 24px)" }}
-          className="artboard phone-1 bg-black rounded-[20px] flex justify-center items-center"
-        >
-          {isLoading ? (
-            <div className="skeleton min-h-[calc(100vh-50px)] max-h-[calc(100vh-50px)] min-w-[270px] max-w-[270px]"></div>
-          ) : (
-            <div
-              style={{ width: "270px", height: "calc(100vh - 50px)" }}
-              className="artboard phone-1 bg-[#121212] rounded-[20px]"
-            ></div>
-          )}
-        </div>
+    <main className="mx-auto flex-1 flex lt-md:flex-col">
+      <div className="w-md flex flex-col bg-black p-4 lt-lg:hidden">
+        <InterstitialAds />
       </div>
-      <div className="flex-1 min-h-screen">
-        <div className="w-full flex justify-center">
-          <Header />
-          <div
-            ref={mainRef}
-            style={{ height: "calc(100vh - 24px)" }}
-            className="rounded-[20px] fixed top-3 h-full lg:max-w-[calc(100vw-650px)] max-w-[calc(100vw-24px)] w-full bg-black"
-          >
-            {/* haeder */}
-            {/* the snap propery on works if the height is set, don't remove it */}
-            <div className="max-h-[91vh] mt-10 w-full snap-y snap-mandatory scroll-smooth overflow-y-auto no-scrollbar">
-              {isLoading ? (
-                <div className="mt-10 snap-start">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <div className=" mb-6 flex justify-center items-center">
-                      <PostSkeleton key={i} />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                posts.map((post, index) => (
-                  <>
-                    {/* the className in this component is mandatory for scroll-snap */}
-                    <div
-                      key={post}
-                      className="max-h-[90vh] snap-start"
-                    >
-                      <VideoPlayerModal isRightSide={false} />
-                    </div>
-                    {(index + 1) % 4 === 0 && (
-                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-start">
-                        <SponsoredCard
-                          title="Arsenal"
-                          description="Lorem ipsum dolor sit amet, 
-                          consectetur adipiscing elit. Sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua.
-                          Lorem ipsum dolor sit amet, 
-                          consectetur adipiscing elit. Sed do eiusmod
-                           tempor incididunt ut labore et dolore magna aliqua."
-                          image="https://picsum.photos/150"
-                          sponsorLogo="https://picsum.photos/300"
-                          sponsorName="Arsenal"
-                        />
-                      </div>
-                    )}
-
-                    {/* {(index + 1) % 6 === 0 && (
-                      <div className="lg:hidden flex items-center justify-center w-full h-full px-5 snap-start">
-                        <CreatorCard
-                          username={"cash.baker"}
-                          avatar={
-                            "https://images.unsplash.com/photo-1633332755192-727a05c4013d"
-                          }
-                          isVerified={true}
-                          postedAgo={"5h ago"}
-                        />
-                      </div>
-                    )} */}
-                  </>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="fixed lg:block hidden border-none right-3 top-3">
-          <div
-            style={{ width: "300px", height: "calc(100vh - 24px)" }}
-            className="artboard phone-1 bg-black rounded-[20px] h-full overflow-y-auto no-scrollbar"
-          >
-            {isLoading ? (
-              <div className="mt-10 flex justify-center w-full items-center flex-col">
-                <CardSkeleton />
-              </div>
-            ) : (
-              <Sidebar isRightSide />
-            )}
-          </div>
-        </div>
-        {isModalOpen && (
-          <VideoModal imageUrl="" onClose={() => setIsModalOpen(false)} />
-        )}
+      <div className="relative w-lg lt-sm:w-screen lt-md:h-screen md:mx-auto md:w-lg">
+        <Navigation className="absolute inset-x-0 z-100" />
+        <FeedList
+          feeds={feeds}
+          onLoadMore={onLoadMore}
+        />
       </div>
-    </Layout>
+      <div className="w-lg flex flex-col space-y-4 bg-black p-4 lt-md:hidden">
+        <InterstitialAds className="flex" />
+        <BannerAds
+          {...bannerAds[0]}
+          className="max-w-xs"
+        />
+      </div>
+    </main>
   );
 }
-
-export default Home;

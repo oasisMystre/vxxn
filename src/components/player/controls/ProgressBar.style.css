@@ -1,9 +1,10 @@
 input[type="range"] {
-  height: 6px;
+  height: 32px;
   border-radius: 1000px;
   -moz-appearance: none !important;
   -webkit-appearance: none !important;
-  background: rgba(255, 255, 255, 0.25);
+  background: transparent;
+  cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb,
@@ -37,13 +38,6 @@ input[type="range"]:focus {
   outline: none;
 }
 
-.playing input[type="range"] {
-  height: 4px;
-  border-radius: 1000px;
-  -moz-appearance: none !important;
-  -webkit-appearance: none !important;
-  background: rgba(255, 255, 255, 0.25);
-}
 
 .playing input[type="range"]::-webkit-slider-thumb,
 .playing input[type="range"]::-moz-range-thumb {

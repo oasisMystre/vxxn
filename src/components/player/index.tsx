@@ -12,6 +12,7 @@ import {
 import ProgressBar from "./controls/ProgressBar";
 import PlaybackToggleButton from "./controls/PlaybackToggleButton";
 import PlayerProvider from "../../providers/PlayerProvider";
+import MuteButton from "./controls/MuteButton";
 
 type PlayerProps = {
   src: string;
@@ -51,9 +52,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
         <div
           ref={container}
           style={style}
-          className={clsx(className, "h-screen relative flex flex-col", {
-            "playing cursor-pointer": playing,
-          })}
+          className={clsx(className, "h-screen relative flex flex-col")}
         >
           <video
             ref={video}
@@ -65,13 +64,15 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
             onPlaying={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
           />
-          <div className="absolute inset-0 flex">
+          <div
+            className={clsx("absolute inset-0 flex flex-col", {
+              "playing cursor-pointer": playing,
+            })}
+          >
             {children}
-            <PlaybackToggleButton />
-            <ProgressBar
-              value={0.1}
-              className="absolute bottom-1 inset-x-2 transition-all transition-100"
-            />
+            <MuteButton className="z-100" />
+            <PlaybackToggleButton className="z-10" />
+            <ProgressBar className="z-100 absolute bottom-0 inset-x-2 transition-all transition-100" />
           </div>
         </div>
       </PlayerProvider>

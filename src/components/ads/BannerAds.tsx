@@ -19,7 +19,7 @@ export default function BannerAds({
   className,
 }: BannerAdsProps) {
   return (
-    <div className={clsx("flex flex-col space-y-4 bg-dark", className)}>
+    <div className={clsx("flex flex-col  bg-dark-700 rounded-xl", className)}>
       <div className="relative flex flex-col">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
         <div className="absolute top-4 left-2 flex items-center space-x-2 bg-black/50 px-3 py-1 rounded-full">
@@ -33,7 +33,7 @@ export default function BannerAds({
           className="w-full h-64 rounded-t-xl"
         />
       </div>
-      <div className="flex flex-col space-y-2 px-4 rounded-b-xl">
+      <div className="flex flex-col space-y-4 p-6 rounded-b-xl">
         <div className="flex items-center space-x-2">
           <img
             src={avatar}
@@ -41,11 +41,11 @@ export default function BannerAds({
             height={32}
             className="rounded-full"
           />
-          <p>{name}</p>
+          <p className="text-gray-400 text-sm">{name}</p>
         </div>
-        <div>
-          <h1 className="text-xl">{title}</h1>
-          <p className="text-sm text-white/75 md:text-base">{description}</p>
+        <div className="flex flex-col space-y-2">
+          <h1 className="font-bold text-sm lg:text-xl">{title}</h1>
+          <p className="text-[12px] text-gray-4 lg:text-[16px]">{description}</p>
         </div>
       </div>
     </div>

@@ -23,4 +23,15 @@ export const homeFeeds: Video[] = [
     source: "other",
     uploadStatus: "pending",
   },
+  {
+    id: crypto.randomUUID(),
+    url: "/videos/3.mp4",
+    title: "Test this",
+    duration: "1H",
+    quality: "720p",
+    views: 0,
+    uploader: "",
+    source: "other",
+    uploadStatus: "pending",
+  },
 ];

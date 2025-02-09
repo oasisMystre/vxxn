@@ -9,6 +9,8 @@ import "./index.css";
 
 import { HomePage } from "./pages/index.ts";
 import RootLayout from "./components/layout/index.tsx";
+import SearchPage from "./pages/search/index.tsx";
+import UploadPage from "./pages/upload/index.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,7 +24,15 @@ createRoot(document.getElementById("root")!).render(
             element={<HomePage />}
             path="/"
           />
+          <Route
+            element={<SearchPage />}
+            path="/search"
+          />
         </Route>
+        <Route
+          element={<UploadPage />}
+          path="/upload"
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>

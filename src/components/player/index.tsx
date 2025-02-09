@@ -9,10 +9,10 @@ import {
   useState,
 } from "react";
 
+import MuteButton from "./controls/MuteButton";
 import ProgressBar from "./controls/ProgressBar";
 import PlaybackToggleButton from "./controls/PlaybackToggleButton";
 import PlayerProvider from "../../providers/PlayerProvider";
-import MuteButton from "./controls/MuteButton";
 
 type PlayerProps = {
   src: string;
@@ -57,7 +57,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
           <video
             ref={video}
             src={src}
-            className="absolute inset-0 w-full h-full object-cover rounded-xl"
+            className="absolute inset-0 w-full h-full object-cover bg-black sm:rounded-xl"
             loop
             playsInline
             disablePictureInPicture
@@ -70,10 +70,10 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
             })}
           >
             {children}
-            <MuteButton className="z-100" />
+            <MuteButton className="absolute top-3 left-3 z-100" />
             <PlaybackToggleButton className="z-10" />
             {inView && (
-              <ProgressBar className="z-100 absolute -bottom-3.5 inset-x-2 transition-all transition-100" />
+              <ProgressBar className="z-100 absolute bottom-0 inset-x-0 transition-all transition-100" />
             )}
           </div>
         </div>

@@ -1,8 +1,8 @@
-import clsx from "clsx";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import "./ProgressBar.style.css";
 import { usePlayer } from "../../../providers/PlayerProvider";
+import clsx from "clsx";
 
 type ProgressBarProps = {
   className?: string;
@@ -30,10 +30,11 @@ export default function ProgressBar({ className }: ProgressBarProps) {
 
   return (
     <input
+      id="progress__bar"
       type="range"
-      className={className}
       max={100}
       value={percentage}
+      className={className}
       onChange={(event) => {
         if (video) {
           const progress =

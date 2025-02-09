@@ -24,13 +24,13 @@ export default function FeedList({
           itemCount={feeds.length}
           loadMoreItems={onLoadMore}
         >
-          {({onItemsRendered}) => (
+          {({ onItemsRendered }) => (
             <FixedSizeList
               className="flex flex-col overflow-y-scroll snap-mandatory snap-y scrollbar-none"
               width={width}
               height={height}
               itemCount={feeds.length}
-              itemSize={window.innerHeight}
+              itemSize={window.innerHeight - 32}
               onItemsRendered={onItemsRendered}
             >
               {({ index, style }) => {

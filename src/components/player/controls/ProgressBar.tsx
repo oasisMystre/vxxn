@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import "./ProgressBar.style.css";
+
+import Slider from "../../Slider";
 import { usePlayer } from "../../../providers/PlayerProvider";
-import clsx from "clsx";
 
 type ProgressBarProps = {
   className?: string;
@@ -29,20 +29,21 @@ export default function ProgressBar({ className }: ProgressBarProps) {
   }, [video, onTimeUpdate]);
 
   return (
-    <input
-      id="progress__bar"
-      type="range"
-      max={100}
-      value={percentage}
+    <div
+      id="slider"
+      tabIndex={-1}
       className={className}
-      onChange={(event) => {
-        if (video) {
-          const progress =
-            (parseFloat(event.target.value) / 100) * video.duration;
-          video.currentTime = progress;
-          setProgress(progress);
-        }
-      }}
-    />
+    >
+      <Slider
+        value={percentage}
+        onChange={(value) => {
+          if (video && typeof value === "number") {
+            const progress = (value / 100) * video.duration;
+            video.currentTime = progress;
+            setProgress(progress);
+          }
+        }}
+      />
+    </div>
   );
 }

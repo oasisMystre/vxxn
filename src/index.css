@@ -1,3 +1,21 @@
 * {
-    outline: none;
+  outline: none;
+}
+.rc-slider {
+  cursor: pointer;
+}
+
+.rc-slider:hover .handle,
+.rc-slider .handle:hover,
+.rc-slider .handle:focus {
+  background: rgb(255, 255, 255);
+  box-shadow: none;
+  border: none;
+}
+
+.rc-slider .handle {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  @apply !ring-none;
 }

@@ -73,7 +73,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
             <MuteButton className="absolute top-3 left-3 z-100" />
             <PlaybackToggleButton className="z-10" />
             {inView && (
-              <ProgressBar className="z-100 absolute bottom-0 inset-x-0 transition-all transition-100" />
+              <ProgressBar className="[calc(100%-8px)] z-100 absolute -bottom-1 inset-x-2 transition-all transition-100" />
             )}
           </div>
         </div>

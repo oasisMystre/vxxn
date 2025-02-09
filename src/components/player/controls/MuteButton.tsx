@@ -2,6 +2,8 @@ import clsx from "clsx";
 
 import { useEffect, useState } from "react";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+
+import Slider from "../../Slider";
 import { usePlayer } from "../../../providers/PlayerProvider";
 
 type MuteButtonProps = {
@@ -27,17 +29,17 @@ export default function MuteButton({ className }: MuteButtonProps) {
       >
         {muted ? <FaVolumeMute /> : <FaVolumeUp />}
       </button>
-      <input
-        type="range"
+      <Slider
         className="w-16 opacity-0 transition-opacity group-hover:opacity-100"
-        min="0"
-        max="1"
-        step="0.01"
+        min={0}
+        max={1}
+        step={0.01}
         value={muted ? 0 : volume}
-        onChange={(event) => {
-          const volume = parseFloat(event.target.value);
-          setVolume(volume);
-          setMuted(volume === 0);
+        onChange={(value) => {
+          if (typeof value === "number") {
+            setVolume(value);
+            setMuted(value === 0);
+          }
         }}
       />
     </div>

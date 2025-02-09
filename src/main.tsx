@@ -10,7 +10,7 @@ import "./index.css";
 import RootLayout from "./components/layout/index.tsx";
 import SearchPage from "./pages/search/index.tsx";
 import UploadPage from "./pages/upload/index.tsx";
-import { HomePage } from "./pages/home/index.tsx";
+import { HomePage } from "./pages/home-/index.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

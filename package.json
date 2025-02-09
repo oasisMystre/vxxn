@@ -17,6 +17,7 @@
     "@unocss/reset": "^65.4.3",
     "@use-gesture/react": "^10.3.1",
     "clsx": "^2.1.1",
+    "formik": "^2.4.6",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -30,7 +31,8 @@
     "react-window-infinite-loader": "^1.0.10",
     "unocss": "^65.4.3",
     "vite-react-typescript-starter": "file:",
-    "xior": "^0.6.3"
+    "xior": "^0.6.3",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

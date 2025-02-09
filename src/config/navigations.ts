@@ -13,10 +13,11 @@ export const homeNavigations: Navigation[] = [
   },
   {
     icon: Search,
-    link: "#",
+    link: "/search",
   },
   {
     icon: Camera,
-    link: "#",
+    link: "/upload",
+    hiddenOnMobile: true,
   },
 ];

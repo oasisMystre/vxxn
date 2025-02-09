@@ -12,7 +12,7 @@ type NavigationProps = {
 export default function Navigation({ className }: NavigationProps) {
   return (
     <header
-      className={clsx("flex items-center justify-center py-2", className)}
+      className={clsx("flex items-center justify-center py-2 md:py-5", className)}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent blur-2xl" />
       {homeNavigations.map((navigation, index) => (

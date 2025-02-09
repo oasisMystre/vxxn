@@ -41,8 +41,10 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
     }));
 
     useEffect(() => {
-      if (inView) play();
-      else pause();
+      if (import.meta.env.PROD) {
+        if (inView) play();
+        else pause();
+      }
     }, [inView, play, pause]);
 
     useEffect;
@@ -52,7 +54,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
         <div
           ref={container}
           style={style}
-          className={clsx(className, "h-screen relative flex flex-col")}
+          className={clsx(className, "relative flex flex-col")}
         >
           <video
             ref={video}
@@ -73,7 +75,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
             <MuteButton className="absolute top-3 left-3 z-100" />
             <PlaybackToggleButton className="z-10" />
             {inView && (
-              <ProgressBar className="z-100 absolute bottom-0 md:-bottom-1 inset-x-1 transition-all transition-100 md:inset-x-2 " />
+              <ProgressBar className="z-100 absolute bottom-0 md:-bottom-1 inset-x-1 transition-all transition-100 lt-md:hidden md:inset-x-2 " />
             )}
           </div>
         </div>

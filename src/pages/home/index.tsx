@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import FeedList from "../../components/feed/FeedList";
+import Navigation from "../../components/layout/Navigation";
+import FeedList, { Feed } from "../../components/feed/FeedList";
 
 import { homeFeeds } from "../../config/mock/videosource";
 
@@ -11,9 +12,15 @@ export function HomePage() {
   };
 
   return (
-    <FeedList
-      feeds={feeds}
-      onLoadMore={onLoadMore}
-    />
+    <>
+      <div className="h-screen flex flex-col space-y-16 py-8 overflow-y-scroll snap-mandatory snap-y scrollbar-none">
+        {feeds.map((feed) => (
+          <Feed
+            feed={feed}
+            className="h-screen md:h-[calc(100vh-32px)] py-4"
+          />
+        ))}
+      </div>
+    </>
   );
 }

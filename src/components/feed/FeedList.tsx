@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useWindowSize } from "react-use";
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -16,11 +17,11 @@ export default function FeedList({
   feeds,
   className,
   onLoadMore,
-}: FeedListProps) {
-  const {  width: windowWidth, height: windowHeight } = useWindowSize();
+}: React.PropsWithChildren<FeedListProps>) {
+  const { height: windowHeight } = useWindowSize();
 
   return (
-    <AutoSizer className={className}>
+    <AutoSizer className={clsx(className, "relative")}>
       {({ height, width }) => (
         <InfiniteLoader
           isItemLoaded={(index) => index < feeds.length - 1}
@@ -33,8 +34,9 @@ export default function FeedList({
               width={width}
               height={height}
               itemCount={feeds.length}
-              itemSize={windowWidth >= 640 ? windowHeight - 32 : windowHeight}
+              itemSize={windowHeight}
               onItemsRendered={onItemsRendered}
+              initialScrollOffset={100}
             >
               {({ index, style }) => {
                 const feed = feeds[index];
@@ -55,15 +57,16 @@ export default function FeedList({
 
 type FeedProps = {
   feed: Video;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
+  className?: string
 };
 
-const Feed = ({ feed, style }: FeedProps) => {
+export const Feed = ({ feed, style, className }: FeedProps) => {
   return (
     <Player
       src={feed.url}
       style={style}
-      className="shrink-0 snap-start"
+      className={clsx("shrink-0 snap-center", className)}
     />
   );
 };

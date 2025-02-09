@@ -18,7 +18,7 @@ export default function RootLayout() {
         <Outlet />
       </div>
       <div className="h-100dvh overflow-y-scroll snap-mandatory snap-y p-4 scrollbar-none">
-        <div className="h-[calc(100vh-24px)] w-sm grid grid-rows-2 space-y-4 bg-black p-4 rounded-xl lt-xl:hidden">
+        <div className="h-[calc(100vh-24px)] max-w-sm grid grid-rows-2 space-y-4 bg-black p-4 rounded-xl lt-xl:hidden">
           <VideoAds
             src="/videos/3.mp4"
             className="snap-end h-lg w-full object-cover overflow-y-hidden"

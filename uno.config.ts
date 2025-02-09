@@ -1,4 +1,9 @@
-import { defineConfig, transformerDirectives } from "unocss";
+import {
+  defineConfig,
+  transformerDirectives,
+  presetWebFonts,
+  presetUno,
+} from "unocss";
 
 export default defineConfig({
   theme: {
@@ -8,15 +13,15 @@ export default defineConfig({
       tanblack: "#1e1e1e",
     },
   },
-  rules: [
-    [
-      "scrollbar-none",
-      {
-        "&::webkit-scrollbar": "display: none;",
-        "-ms-overflow-style": "none",
-        "scrollbar-width": "none",
+ 
+  presets: [
+    presetUno(),
+    presetWebFonts({
+      provider: "google",
+      fonts: {
+        sans: "Open Sans",
       },
-    ],
+    }),
   ],
   transformers: [transformerDirectives()],
 });

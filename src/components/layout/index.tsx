@@ -17,12 +17,17 @@ export default function RootLayout() {
         <Navigation className="max-w-sm absolute z-10 self-center z-100" />
         <Outlet />
       </div>
-      <div className="w-sm grid grid-rows-2 space-y-4 bg-black p-4 rounded-xl my-4 lt-xl:hidden">
-        <VideoAds
-          src="/videos/3.mp4"
-          className="h-md w-full object-cover"
-        />
-        <BannerAds {...bannerAds[0]} />
+      <div className="h-100dvh overflow-y-scroll snap-mandatory snap-y p-4 scrollbar-none">
+        <div className="h-[calc(100vh-24px)] w-sm grid grid-rows-2 space-y-4 bg-black p-4 rounded-xl lt-xl:hidden">
+          <VideoAds
+            src="/videos/3.mp4"
+            className="snap-end h-lg w-full object-cover overflow-y-hidden"
+          />
+          <BannerAds
+            {...bannerAds[0]}
+            className="snap-end"
+          />
+        </div>
       </div>
     </main>
   );

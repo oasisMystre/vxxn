@@ -12,6 +12,7 @@ import {
 import MuteButton from "./controls/MuteButton";
 import ProgressBar from "./controls/ProgressBar";
 import PlaybackToggleButton from "./controls/PlaybackToggleButton";
+
 import PlayerProvider from "../../providers/PlayerProvider";
 
 type PlayerProps = {
@@ -65,6 +66,7 @@ export default forwardRef<PlayerRef, React.PropsWithChildren<PlayerProps>>(
             disablePictureInPicture
             onPlaying={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
+            preload="auto"
           />
           <div
             className={clsx("absolute inset-0 flex flex-col", {

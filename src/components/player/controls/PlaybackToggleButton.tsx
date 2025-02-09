@@ -5,11 +5,11 @@ import { FaPause, FaPlay } from "react-icons/fa";
 import "./PlaybackToggleButton.style.css";
 import { usePlayer } from "../../../providers/PlayerProvider";
 
-type ToggleButtonProps = {
+type PlaybackToggleButtonProps = {
   className?: string;
 };
 
-export default function ToggleButton({ className }: ToggleButtonProps) {
+export default function PlaybackToggleButton({ className }: PlaybackToggleButtonProps) {
   const { playing, setPlaying } = usePlayer();
   const [isAnimated, setIsAnimated] = useState(false);
   const [timer, setTimer] = useState<number | null>(null);

@@ -1,6 +1,7 @@
+import { useWindowSize } from "react-use";
 import { FixedSizeList } from "react-window";
-import InfiniteLoader from "react-window-infinite-loader";
 import AutoSizer from "react-virtualized-auto-sizer";
+import InfiniteLoader from "react-window-infinite-loader";
 
 import Player from "../player";
 import type { Video } from "../../lib/api/models";
@@ -16,6 +17,8 @@ export default function FeedList({
   className,
   onLoadMore,
 }: FeedListProps) {
+  const {  width: windowWidth, height: windowHeight } = useWindowSize();
+
   return (
     <AutoSizer className={className}>
       {({ height, width }) => (
@@ -30,7 +33,7 @@ export default function FeedList({
               width={width}
               height={height}
               itemCount={feeds.length}
-              itemSize={height}
+              itemSize={windowWidth >= 640 ? windowHeight - 32 : windowHeight}
               onItemsRendered={onItemsRendered}
             >
               {({ index, style }) => {

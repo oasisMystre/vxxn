@@ -15,10 +15,7 @@ export function HomePage() {
           <>
             {index % 2 === 1 && (
               <div className="snap-center shrink-0 bg-black p-4 md:hidden">
-                <BannerAds
-                  {...bannerAds[0]}
-                  className="s"
-                />
+                <BannerAds {...bannerAds[0]} />
               </div>
             )}
             <Feed

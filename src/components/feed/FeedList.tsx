@@ -30,7 +30,7 @@ export default function FeedList({
               width={width}
               height={height}
               itemCount={feeds.length}
-              itemSize={window.innerHeight - 32}
+              itemSize={height}
               onItemsRendered={onItemsRendered}
             >
               {({ index, style }) => {
